@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
 import { API_URL } from '../../api';
-import './Signup.css';
-import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
+export default function Login({ setUser }) {
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navidate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +20,15 @@ export default function Signup() {
     setError(false);
     try {
       setLoading(true);
-      const { data } = await axios.post(`${API_URL}/auth/signup`, {
+      const { data } = await axios.post(`${API_URL}/auth/login`, {
         email,
         password,
       });
       setLoading(false);
-      if (data.success) navidate('/account-created');
+      if (data.success) {
+        setUser({ ...data.data.user, token: data.data.token });
+        navigate('/');
+      }
     } catch (err) {
       setLoading(false);
       setError(err.response.data.message);
@@ -58,9 +59,8 @@ export default function Signup() {
           />
         </label>
         <button disabled={loading} type="submit">
-          Crear una cuenta
+          Iniciar sesión
         </button>
-        <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
         {error}
       </form>
     </main>

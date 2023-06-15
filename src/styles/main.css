@@ -18,11 +18,11 @@ a {
 ul, ol {
   list-style: none;
 }
-
 main {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   font-size: 1.5rem;
 }
 main p {
