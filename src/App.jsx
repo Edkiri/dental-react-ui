@@ -1,15 +1,21 @@
+import { Route, Routes } from 'react-router-dom';
+
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import NotFound from './pages/NotFound';
+
+import Header from './components/Header';
+
 export default function App() {
   return (
     <>
-      <header>
-        <h1>Dentisalud</h1>
-      </header>
-      <main>
-        <p>
-          Una simulación donde los pacientes reciben atención dental de
-          vanguardia en un entorno acogedor y moderno.
-        </p>
-      </main>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
