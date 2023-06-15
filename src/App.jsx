@@ -1,6 +1,4 @@
-import "./common/index.css";
-
-function App() {
+export default function App() {
   return (
     <>
       <header>
@@ -15,5 +13,3 @@ function App() {
     </>
   );
 }
-
-export default App;
