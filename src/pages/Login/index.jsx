@@ -1,12 +1,11 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
-import { LOGIN_URL } from '../../api';
 import AuthContext from '../../user/context/AuthContext';
+import userApi from '../../api/index';
 
-export default function Login({ setUser }) {
+export default function Login() {
   const { login } = useContext(AuthContext);
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
@@ -24,12 +23,9 @@ export default function Login({ setUser }) {
     setError(false);
     try {
       setLoading(true);
-      const { data } = await axios.post(LOGIN_URL, {
-        email,
-        password,
-      });
+      const user = await userApi.login({ email, password });
       setLoading(false);
-      login({ ...data.data.user, token: data.data.token });
+      login(user);
       navigate('/');
     } catch (err) {
       setLoading(false);
