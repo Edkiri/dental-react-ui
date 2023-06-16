@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-// import { useState } from 'react';
+
+import AuthContext from './user/auth-context';
+import useAuth from './hooks/useAuth';
 
 import Home from './pages/Home';
 import Signup from './pages/Signup';
@@ -10,18 +12,20 @@ import NotFound from './pages/NotFound';
 import Header from './components/Header';
 
 export default function App() {
-  // const [user, setUser] = useState({});
+  const { user, login } = useAuth();
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/account-created" element={<SignupSucess />} />
-        <Route path="/login" element={<Login />} />
+    <AuthContext.Provider value={{ user, login }}>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/account-created" element={<SignupSucess />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </>
+    </AuthContext.Provider>
   );
 }

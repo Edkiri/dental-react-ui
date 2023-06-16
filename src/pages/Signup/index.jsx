@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
-import { API_URL } from '../../api';
+import { API_URL, SIGNUP_URL } from '../../api';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ export default function Signup() {
     setError(false);
     try {
       setLoading(true);
-      const { data } = await axios.post(`${API_URL}/auth/signup`, {
+      const { data } = await axios.post(SIGNUP_URL, {
         email,
         password,
       });

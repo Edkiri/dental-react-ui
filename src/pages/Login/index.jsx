@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
-import { API_URL } from '../../api';
+import { LOGIN_URL } from '../../api';
+import AuthContext from '../../user/auth-context';
 
 export default function Login({ setUser }) {
+  const { login } = useContext(AuthContext);
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
+
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,15 +24,13 @@ export default function Login({ setUser }) {
     setError(false);
     try {
       setLoading(true);
-      const { data } = await axios.post(`${API_URL}/auth/login`, {
+      const { data } = await axios.post(LOGIN_URL, {
         email,
         password,
       });
       setLoading(false);
-      if (data.success) {
-        setUser({ ...data.data.user, token: data.data.token });
-        navigate('/');
-      }
+      login({ ...data.data.user, token: data.data.token });
+      navigate('/');
     } catch (err) {
       setLoading(false);
       setError(err.response.data.message);
