@@ -7,7 +7,6 @@
   align-items: center;
   gap: 0.5rem;
 } 
-
 .signup-form label {
   display: flex;
   flex-direction: column;

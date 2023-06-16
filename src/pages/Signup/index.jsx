@@ -10,21 +10,24 @@ import './Signup.css';
 export default function Signup() {
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+
   const navidate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { value: email } = emailInput;
     const { value: password } = passwordInput;
     if (!email || !password) return;
     setError(false);
+
     try {
       setLoading(true);
       await userApi.signup({ email, password });
-      setLoading(false);
-      if (data.success) navidate('/account-created');
+      navidate('/account-created');
     } catch (err) {
       setLoading(false);
       setError(err.response.data.message);

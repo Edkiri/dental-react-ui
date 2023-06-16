@@ -2,29 +2,30 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useInputValue from '../../hooks/useInputValue';
-import AuthContext from '../../user/context/AuthContext';
+import AuthContext from '../../auth/AuthContext';
 import userApi from '../../api/index';
 
 export default function Login() {
-  const { login } = useContext(AuthContext);
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
 
-  const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
+
     const { value: email } = emailInput;
     const { value: password } = passwordInput;
     if (!email || !password) return;
-    setError(false);
+
     try {
       setLoading(true);
       const user = await userApi.login({ email, password });
-      setLoading(false);
       login(user);
       navigate('/');
     } catch (err) {
