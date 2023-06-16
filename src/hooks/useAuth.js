@@ -9,9 +9,14 @@ export default function useAuth() {
     setLocalStorage(userData);
   };
 
+  const logout = (e) => {
+    setLocalStorage(null);
+    console.log(storedValue);
+  }
+
   useEffect(() => {
     setUser(storedValue);
   }, [storedValue]);
 
-  return { user, login };
+  return { user, login, logout };
 }

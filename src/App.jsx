@@ -12,9 +12,9 @@ import NotFound from './pages/NotFound';
 import Header from './components/Header';
 
 export default function App() {
-  const { user, login } = useAuth();
+  const { user, login, logout } = useAuth();
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <>
         <Header />
         <Routes>

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import AuthContext from '../../user/auth-context';
 
 export default function Header() {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return (
     <header>
       <Link to="/">
@@ -13,7 +13,10 @@ export default function Header() {
       </Link>
       <div className="profile-container">
         {user ? (
-          <span>{user.profile.firstName + ' ' + user.profile.lastName}</span>
+          <>
+            <span>{user.profile.firstName + ' ' + user.profile.lastName}</span>
+            <button onClick={logout}>Cerrar sesión</button>
+          </>
         ) : (
           <Link to="/signup">
             <h4>Registro</h4>
