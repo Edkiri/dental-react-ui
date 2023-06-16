@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
-import { API_URL, SIGNUP_URL } from '../../api';
-import './Signup.css';
 import { useNavigate } from 'react-router-dom';
+import userApi from '../../api/index';
+
+import './Signup.css';
 
 export default function Signup() {
   const emailInput = useInputValue('');
@@ -22,10 +22,7 @@ export default function Signup() {
     setError(false);
     try {
       setLoading(true);
-      const { data } = await axios.post(SIGNUP_URL, {
-        email,
-        password,
-      });
+      await userApi.signup({ email, password });
       setLoading(false);
       if (data.success) navidate('/account-created');
     } catch (err) {
@@ -60,7 +57,9 @@ export default function Signup() {
         <button disabled={loading} type="submit">
           Crear una cuenta
         </button>
-        <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+        <p>
+          ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+        </p>
         {error}
       </form>
     </main>

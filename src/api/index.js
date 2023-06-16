@@ -14,4 +14,12 @@ async function login({ email, password }) {
   return user;
 }
 
-export default { login };
+async function signup({ email, password }) {
+  const { data } = await axios.post(SIGNUP_URL, {
+    email,
+    password,
+  });
+  return data;
+}
+
+export default { login, signup };
