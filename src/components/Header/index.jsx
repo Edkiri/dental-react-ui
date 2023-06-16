@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 import { useContext } from 'react';
-import AuthContext from '../../user/auth-context';
+import AuthContext from '../../user/context/AuthContext';
 
 export default function Header() {
   const { user, logout } = useContext(AuthContext);
@@ -14,7 +14,7 @@ export default function Header() {
       <div className="profile-container">
         {user ? (
           <>
-            <span>{user.profile.firstName + ' ' + user.profile.lastName}</span>
+            <span>Hola {user.profile.firstName}</span>
             <button onClick={logout}>Cerrar sesión</button>
           </>
         ) : (

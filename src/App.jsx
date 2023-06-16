@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
-import AuthContext from './user/auth-context';
-import useAuth from './hooks/useAuth';
+import AuthContext from './user/context/AuthContext';
+import useAuth from './user/context/useAuth';
 
 import Home from './pages/Home';
 import Signup from './pages/Signup';

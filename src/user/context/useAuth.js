@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function useAuth() {
   const { storedValue, setLocalStorage } = useLocalStorage('user', null);
@@ -9,10 +9,10 @@ export default function useAuth() {
     setLocalStorage(userData);
   };
 
-  const logout = (e) => {
+  const logout = () => {
     setLocalStorage(null);
     console.log(storedValue);
-  }
+  };
 
   useEffect(() => {
     setUser(storedValue);

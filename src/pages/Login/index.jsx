@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import useInputValue from '../../hooks/useInputValue';
 import { LOGIN_URL } from '../../api';
-import AuthContext from '../../user/auth-context';
+import AuthContext from '../../user/context/AuthContext';
 
 export default function Login({ setUser }) {
   const { login } = useContext(AuthContext);
