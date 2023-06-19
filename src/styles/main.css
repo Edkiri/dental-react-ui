@@ -30,11 +30,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.5rem;
 }
-main p {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem 0.5rem;
+.link {
+  color: #0000EE;
 }

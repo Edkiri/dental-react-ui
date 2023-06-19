@@ -61,7 +61,10 @@ export default function Signup() {
           Crear una cuenta
         </button>
         <p>
-          ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+          ¿Ya tienes una cuenta?{' '}
+          <Link className="link" to="/login">
+            Inicia sesión
+          </Link>
         </p>
         {error}
       </form>

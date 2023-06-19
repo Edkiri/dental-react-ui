@@ -7,7 +7,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 function useAuth() {
   const { storedValue, setLocalStorage } = useLocalStorage('user');
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(storedValue);
 
   useEffect(() => {
     setUser(storedValue);

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import useInputValue from '../../hooks/useInputValue';
 import AuthContext from '../../auth/AuthContext';
@@ -61,6 +61,12 @@ export default function Login() {
           Iniciar sesión
         </button>
         {error}
+        <p>
+          ¿Aún no tienes una cuenta?{' '}
+          <Link className="link" to="/signup">
+            Crea una cuenta
+          </Link>
+        </p>
       </form>
     </main>
   );
