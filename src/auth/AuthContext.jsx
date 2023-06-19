@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({});
 
@@ -7,11 +7,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 function useAuth() {
   const { storedValue, setLocalStorage } = useLocalStorage('user');
-  const [user, setUser] = useState(storedValue);
-
-  useEffect(() => {
-    setUser(storedValue);
-  }, [storedValue]);
+  const navigate = useNavigate();
 
   const login = (userData) => {
     setLocalStorage(userData);
@@ -19,12 +15,13 @@ function useAuth() {
 
   const logout = () => {
     setLocalStorage(null);
+    navigate('/');
   };
 
-  return { user, login, logout };
+  return { user: storedValue, login, logout };
 }
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
   const { user, login, logout } = useAuth();
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

@@ -10,7 +10,10 @@ export default function HeaderUserProfile() {
       {user ? (
         <>
           {user.onBoarded ? (
-            <span>Hola {user.profile?.firstName}</span>
+            <>
+              <span>Hola {user.profile?.firstName}</span>
+              <Link to="/profile">Ver perfil</Link>
+            </>
           ) : (
             <Link to="/profile">Completa tu perfil</Link>
           )}
