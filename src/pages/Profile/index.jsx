@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import ProfileData from './ProfileData';
-import ProfileForm from './ProfileForm';
+import ProfileData from './components/ProfileData';
+import ProfileForm from './components/ProfileForm';
 import './Profile.css';
 
 export default function Profile() {
