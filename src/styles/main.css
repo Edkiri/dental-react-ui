@@ -1,6 +1,9 @@
 :root {
   --primary-color: #07689F;
   --secondary-color: #A2D5F2;
+  --white-color: #FAFAFA;
+  --action-color: #FF7E67;
+  --black-color: #000;
 }
 * {
   margin: 0;
@@ -10,11 +13,11 @@
 body {
   width: 100vw;
   min-height: 100vh;
-  background-color: rgb(44, 47, 48);
+  background-color: var(--white-color);
   font-family: 'Ubuntu', sans-serif;
 }
 p, h1, h2, h3, h4, h5, small, span, label, a {
-  color: white;
+  color: var(--black-color);
 }
 a {
   text-decoration: none;

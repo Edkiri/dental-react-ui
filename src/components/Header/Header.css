@@ -1,6 +1,6 @@
 header {
   padding: 2rem;
-  background-color: rgb(52, 51, 51);
+  background-color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,10 +1,11 @@
+import HomeServiceSection from './components/HomeServicesSection';
+
 export default function () {
   return (
     <main>
-      <p>
-        Una simulación donde los pacientes reciben atención dental de vanguardia
-        en un entorno acogedor y moderno.
-      </p>
+      <h2>Sonreir forma parte del plan</h2>
+      <p>Te ayudamos a que tu sonrisa sea tu mejor tarjeta de presentación</p>
+      {/* <HomeServiceSection /> */}
     </main>
   );
 }
