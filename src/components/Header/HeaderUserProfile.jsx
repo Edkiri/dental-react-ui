@@ -1,29 +1,31 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../../auth/AuthContext';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
-export default function HeaderUserProfile() {
-  const { user, logout } = useContext(AuthContext);
+export default function HeaderUserProfile({ hideDropDown }) {
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const userMenuRef = useRef(null);
+  useOnClickOutside(userMenuRef, hideDropDown);
+
+  const handleGoToProfile = () => {
+    hideDropDown();
+    navigate('/profile');
+  };
+
+  const handleLogout = () => {
+    hideDropDown();
+    logout();
+  };
+
   return (
-    <div className="profile-container">
-      {user ? (
-        <>
-          {user.onBoarded ? (
-            <>
-              <span>Hola {user.profile?.firstName}</span>
-              <Link to="/profile">Ver perfil</Link>
-            </>
-          ) : (
-            <Link to="/profile">Completa tu perfil</Link>
-          )}
-          <button onClick={logout}>Cerrar sesión</button>
-        </>
-      ) : (
-        <Link to="/signup">
-          <h4>Registro</h4>
-        </Link>
-      )}
+    <div ref={userMenuRef} className="profile-container">
+      <button onClick={handleGoToProfile}>Ver perfil</button>
+      <button className="logout-button" onClick={handleLogout}>
+        Cerrar sesión
+      </button>
     </div>
   );
 }

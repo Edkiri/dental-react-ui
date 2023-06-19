@@ -7,10 +7,10 @@ import userApi from '../../../api';
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);
   
-  const firstNameInput = useInputValue(user.profile.firstName);
-  const lastNameInput = useInputValue(user.profile.lastName);
-  const phoneNumberInput = useInputValue(user.profile.phoneNumber);
-  const imgUrlInput = useInputValue(user.profile.pictureUrl);
+  const firstNameInput = useInputValue(user.profile?.firstName);
+  const lastNameInput = useInputValue(user.profile?.lastName);
+  const phoneNumberInput = useInputValue(user.profile?.phoneNumber);
+  const imgUrlInput = useInputValue(user.profile?.pictureUrl);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
