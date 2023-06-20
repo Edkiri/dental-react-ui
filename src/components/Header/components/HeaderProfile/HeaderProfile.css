@@ -1,0 +1,49 @@
+.profile-dropdown-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  gap: 0.2rem;
+}
+.profile-dropdown-button .dropdown-icon {
+  transition: transform 0.3s ease;
+}
+.profile-dropdown-button .dropdown-icon.active {
+  transform: rotate(180deg);
+}
+.profile-menu {
+  position: absolute;
+  right: 0;
+  bottom: -95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 200px;
+  background-color: var(--white-color);
+  padding: 1rem;
+  background-color: var(--primary-dark-color);
+  border-radius: 8px;
+}
+.profile-menu button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.drop-down {
+  position: relative;
+  display: block;
+  right: 0;
+}
+.logout-button {
+  color: var(--error-color);
+  border: none;
+  background-color: transparent;
+  margin-top: 0.6rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
