@@ -4,7 +4,7 @@ import { FaBars } from 'react-icons/fa';
 import useOnClickOutside from '../../../../hooks/useOnClickOutside';
 import './Navbar.css';
 
-export default function Navbar() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const hideMenuList = () => setIsOpen(false);

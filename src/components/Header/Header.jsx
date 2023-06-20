@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
-import { HeaderProfile } from './components/HeaderProfile/';
+import { HeaderProfile, Navbar } from './components';
 import './Header.css';
 
 export function Header() {
