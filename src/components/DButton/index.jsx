@@ -1,8 +1,8 @@
 import './DButton.css';
 
-export default function DButton({ label, onClick }) {
+export default function DButton({ label, onClick, disabled }) {
   return (
-    <button className="d-button" onClick={onClick}>
+    <button disabled={disabled || false} className="d-button" onClick={onClick}>
       {label}
     </button>
   );

@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 
-import HeaderUserProfile from './HeaderUserProfile';
+import HeaderUserProfile from './components/HeaderUserProfile';
 import AuthContext from '../../auth/AuthContext';
 import './Header.css';
 
 export default function Header() {
   const { user } = useContext(AuthContext);
   const [dropDown, setDropDown] = useState(false);
-  
+
   const hideDropDown = () => setDropDown(false);
 
   return (

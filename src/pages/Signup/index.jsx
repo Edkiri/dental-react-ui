@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import useInputValue from '../../hooks/useInputValue';
-import { useNavigate } from 'react-router-dom';
 import userApi from '../../api/index';
+import DFilledButton from '../../components/DFilledButton';
 
 import './Signup.css';
 
 export default function Signup() {
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
+  const rePasswordInput = useInputValue('');
 
   const navidate = useNavigate();
 
@@ -57,15 +58,27 @@ export default function Signup() {
             {...passwordInput}
           />
         </label>
-        <button disabled={loading} type="submit">
-          Crear una cuenta
-        </button>
+        <label htmlFor="password">
+          Reingresa la contraseña
+          <input
+            id="rePassword"
+            type="password"
+            placeholder="********"
+            name="rePassword"
+            {...rePasswordInput}
+          />
+        </label>
         <p>
           ¿Ya tienes una cuenta?{' '}
           <Link className="link" to="/login">
             Inicia sesión
           </Link>
         </p>
+        <DFilledButton
+          label={'Crear una cuenta'}
+          disabled={loading}
+          type="submit"
+        />
         {error}
       </form>
     </main>

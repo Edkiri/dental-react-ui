@@ -3,4 +3,12 @@
   color: var(--secondary-color);
   padding: 0.4rem 1.2rem;
   border-radius: 1rem;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  transition: color 0.1s ease;
+  cursor: pointer;
+}
+.d-button:hover {
+  color: white;
+  background-color: var(--secondary-color);
 }

@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import useInputValue from '../../hooks/useInputValue';
 import AuthContext from '../../auth/AuthContext';
 import userApi from '../../api/index';
+import DFilledButton from '../../components/DFilledButton';
 
 export default function Login() {
   const emailInput = useInputValue('');
@@ -57,9 +58,6 @@ export default function Login() {
             {...passwordInput}
           />
         </label>
-        <button disabled={loading} type="submit">
-          Iniciar sesión
-        </button>
         {error}
         <p>
           ¿Aún no tienes una cuenta?{' '}
@@ -67,6 +65,11 @@ export default function Login() {
             Crea una cuenta
           </Link>
         </p>
+        <DFilledButton
+          label={'Iniciar sesión'}
+          disabled={loading}
+          type="submit"
+        />
       </form>
     </main>
   );
