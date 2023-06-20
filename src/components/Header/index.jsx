@@ -9,7 +9,7 @@ import './Header.css';
 export default function Header() {
   const { user } = useContext(AuthContext);
   const [dropDown, setDropDown] = useState(false);
-
+  
   const hideDropDown = () => setDropDown(false);
 
   return (
@@ -33,7 +33,9 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <Link className='d-button' to="/profile">Completa tu perfil</Link>
+            <Link className="d-button" to="/profile">
+              Completa tu perfil
+            </Link>
           )}
         </>
       ) : (

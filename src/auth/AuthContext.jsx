@@ -6,19 +6,21 @@ const AuthContext = createContext({});
 import useLocalStorage from '../hooks/useLocalStorage';
 
 function useAuth() {
-  const { storedValue, setLocalStorage } = useLocalStorage('user');
+  const { storedValue: user, setLocalStorage: setUser } =
+    useLocalStorage('user');
+
   const navigate = useNavigate();
 
   const login = (userData) => {
-    setLocalStorage(userData);
+    setUser(userData);
   };
 
   const logout = () => {
-    setLocalStorage(null);
+    setUser(null);
     navigate('/');
   };
 
-  return { user: storedValue, login, logout };
+  return { user, login, logout };
 }
 
 export function AuthProvider({ children }) {

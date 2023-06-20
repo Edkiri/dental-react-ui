@@ -6,9 +6,11 @@ import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 export default function HeaderUserProfile({ hideDropDown }) {
   const { logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+
   const userMenuRef = useRef(null);
   useOnClickOutside(userMenuRef, hideDropDown);
+
+  const navigate = useNavigate();
 
   const handleGoToProfile = () => {
     hideDropDown();
