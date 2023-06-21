@@ -11,20 +11,7 @@
   border-radius: 8px;
   margin-top: 1rem;
 } 
-.d-form label {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  gap: 0.4rem;
-  width: 100%;
-}
-.d-form input {
-  outline: none;
-  padding: 0.5rem;
-  color: black;
-  font-size: 1.2rem;
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 0.6rem;
-  font-size: 1.2rem;
+.d-form .d-filled-button {
+  margin-top: 0.8em;
+  font-size: 1.4rem;
 }

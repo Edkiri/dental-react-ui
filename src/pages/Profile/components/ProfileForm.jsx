@@ -4,6 +4,7 @@ import AuthContext from '../../../auth/AuthContext';
 import useInputValue from '../../../hooks/useInputValue';
 import userApi from '../../../api';
 import DForm from '../../../components/DForm/DForm';
+import DInput from '../../../components/DInput/Dinput';
 
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);
@@ -45,36 +46,24 @@ export default function ProfileForm({ setIsUpdating }) {
       loading={loading}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="firstName">
-        Nombre
-        <input
-          id="firstName"
-          type="text"
-          placeholder="Eduardo"
-          name="firstName"
-          {...firstNameInput}
-        />
-      </label>
-      <label htmlFor="lastName">
-        Apellidos
-        <input
-          id="lastName"
-          type="text"
-          placeholder="Kiriakos Piazza"
-          name="lastName"
-          {...lastNameInput}
-        />
-      </label>
-      <label htmlFor="phoneNumber">
-        Teléfono
-        <input
-          id="phoneNumber"
-          type="text"
-          placeholder="6577778888"
-          name="phoneNumber"
-          {...phoneNumberInput}
-        />
-      </label>
+      <DInput
+        id="firstName"
+        name="firstName"
+        label="Nombre"
+        {...firstNameInput}
+      />
+      <DInput
+        id="lastName"
+        name="lastName"
+        label="Apellidos"
+        {...lastNameInput}
+      />
+      <DInput
+        id="phoneNumber"
+        name="phoneNumber"
+        label="Teléfono"
+        {...phoneNumberInput}
+      />
       {error}
     </DForm>
   );
