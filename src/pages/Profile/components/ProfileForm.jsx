@@ -3,10 +3,11 @@ import { useContext, useState } from 'react';
 import AuthContext from '../../../auth/AuthContext';
 import useInputValue from '../../../hooks/useInputValue';
 import userApi from '../../../api';
+import DForm from '../../../components/DForm/DForm';
 
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);
-  
+
   const firstNameInput = useInputValue(user.profile?.firstName);
   const lastNameInput = useInputValue(user.profile?.lastName);
   const phoneNumberInput = useInputValue(user.profile?.phoneNumber);
@@ -15,8 +16,7 @@ export default function ProfileForm({ setIsUpdating }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
     const { value: firstName } = firstNameInput;
     const { value: lastName } = lastNameInput;
     const { value: phoneNumber } = phoneNumberInput;
@@ -40,7 +40,11 @@ export default function ProfileForm({ setIsUpdating }) {
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <DForm
+      btnLabel={'Actualizar perfil'}
+      loading={loading}
+      onSubmit={handleSubmit}
+    >
       <label htmlFor="firstName">
         Nombre
         <input
@@ -71,20 +75,7 @@ export default function ProfileForm({ setIsUpdating }) {
           {...phoneNumberInput}
         />
       </label>
-      <label htmlFor="imgUrl">
-        Enlace de imágen
-        <input
-          id="imgUrl"
-          type="text"
-          placeholder="https://eduardo.com/gallery/profile-pic.png"
-          name="imgUrl"
-          {...imgUrlInput}
-        />
-      </label>
-      <button disabled={loading} type="submit">
-        Actulizar perfil
-      </button>
       {error}
-    </form>
+    </DForm>
   );
 }

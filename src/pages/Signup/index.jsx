@@ -6,6 +6,7 @@ import userApi from '../../api/index';
 import DFilledButton from '../../components/DFilledButton';
 
 import './Signup.css';
+import DForm from '../../components/DForm/DForm';
 
 export default function Signup() {
   const emailInput = useInputValue('');
@@ -17,9 +18,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const { value: email } = emailInput;
     const { value: password } = passwordInput;
     if (!email || !password) return;
@@ -37,7 +36,11 @@ export default function Signup() {
 
   return (
     <main>
-      <form className="signup-form" onSubmit={handleSubmit}>
+      <DForm
+        btnLabel={'Crear una cuenta'}
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
         <label htmlFor="email">
           Correo
           <input
@@ -74,13 +77,8 @@ export default function Signup() {
             Inicia sesión
           </Link>
         </p>
-        <DFilledButton
-          label={'Crear una cuenta'}
-          disabled={loading}
-          type="submit"
-        />
         {error}
-      </form>
+      </DForm>
     </main>
   );
 }

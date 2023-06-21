@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import useInputValue from '../../hooks/useInputValue';
 import AuthContext from '../../auth/AuthContext';
 import userApi from '../../api/index';
-import DFilledButton from '../../components/DFilledButton';
+import DForm from '../../components/DForm/DForm';
 
 export default function Login() {
   const emailInput = useInputValue('');
@@ -16,16 +16,14 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setError(false);
-
     const { value: email } = emailInput;
     const { value: password } = passwordInput;
     if (!email || !password) return;
 
+    setLoading(true);
     try {
-      setLoading(true);
       const user = await userApi.login({ email, password });
       login(user);
       navigate('/');
@@ -37,7 +35,11 @@ export default function Login() {
 
   return (
     <main>
-      <form className="signup-form" onSubmit={handleSubmit}>
+      <DForm
+        btnLabel={'Iniciar sesión'}
+        loading={loading}
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="email">
           Correo
           <input
@@ -65,12 +67,7 @@ export default function Login() {
             Crea una cuenta
           </Link>
         </p>
-        <DFilledButton
-          label={'Iniciar sesión'}
-          disabled={loading}
-          type="submit"
-        />
-      </form>
+      </DForm>
     </main>
   );
 }

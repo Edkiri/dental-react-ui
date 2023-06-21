@@ -18,10 +18,6 @@ export default function ProfileData({ setIsUpdating }) {
         <h5>Teléfono</h5>
         <p>{user.profile.phoneNumber}</p>
       </div>
-      <div className="data-container">
-        <h5>Enlace de imágen de perfil</h5>
-        <p>{user.profile.pictureUrl}</p>
-      </div>
       <button onClick={() => setIsUpdating(true)}>Editar</button>
     </div>
   );
