@@ -5,6 +5,7 @@ import useInputValue from '../../hooks/useInputValue';
 import AuthContext from '../../auth/AuthContext';
 import userApi from '../../api/index';
 import DForm from '../../components/DForm/DForm';
+import DInput from '../../components/DInput/Dinput';
 
 export default function Login() {
   const emailInput = useInputValue('');
@@ -40,26 +41,19 @@ export default function Login() {
         loading={loading}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="email">
-          Correo
-          <input
-            id="email"
-            type="text"
-            placeholder="mail@mail.com"
-            name="email"
-            {...emailInput}
-          />
-        </label>
-        <label htmlFor="password">
-          Contraseña
-          <input
-            id="password"
-            type="password"
-            placeholder="********"
-            name="password"
-            {...passwordInput}
-          />
-        </label>
+        <DInput
+          id="email"
+          name="email"
+          label="Dirección de correo"
+          {...emailInput}
+        />
+        <DInput
+          id="password"
+          name="password"
+          label="Contraseña"
+          type="password"
+          {...passwordInput}
+        />
         {error}
         <p>
           ¿Aún no tienes una cuenta?{' '}

@@ -3,10 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import useInputValue from '../../hooks/useInputValue';
 import userApi from '../../api/index';
-import DFilledButton from '../../components/DFilledButton';
 
-import './Signup.css';
 import DForm from '../../components/DForm/DForm';
+import DInput from '../../components/DInput/Dinput';
 
 export default function Signup() {
   const emailInput = useInputValue('');
@@ -41,36 +40,26 @@ export default function Signup() {
         onSubmit={handleSubmit}
         loading={loading}
       >
-        <label htmlFor="email">
-          Correo
-          <input
-            id="email"
-            type="text"
-            placeholder="mail@mail.com"
-            name="email"
-            {...emailInput}
-          />
-        </label>
-        <label htmlFor="password">
-          Contraseña
-          <input
-            id="password"
-            type="password"
-            placeholder="********"
-            name="password"
-            {...passwordInput}
-          />
-        </label>
-        <label htmlFor="password">
-          Reingresa la contraseña
-          <input
-            id="rePassword"
-            type="password"
-            placeholder="********"
-            name="rePassword"
-            {...rePasswordInput}
-          />
-        </label>
+        <DInput
+          id="name"
+          name="email"
+          label="Dirección de correo"
+          {...emailInput}
+        />
+        <DInput
+          id="password"
+          name="password"
+          label="Contraseña"
+          type="password"
+          {...passwordInput}
+        />
+        <DInput
+          id="rePassword"
+          name="rePassword"
+          label="Reingresa la contraseña"
+          type="password"
+          {...rePasswordInput}
+        />
         <p>
           ¿Ya tienes una cuenta?{' '}
           <Link className="link" to="/login">
