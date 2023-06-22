@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
 
 import HeaderProfileMenu from './HeaderProfileMenu';
-import AuthContext from '../../../../auth/AuthContext';
+import AuthContext from '@/auth/AuthContext';
 import './HeaderProfile.css';
 
 export function HeaderProfile() {

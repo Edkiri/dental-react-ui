@@ -1,8 +1,8 @@
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from '../../../../auth/AuthContext';
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
+import AuthContext from '@/auth/AuthContext';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 export default function HeaderProfileMenu({ hideDropDown }) {
   const { logout } = useContext(AuthContext);

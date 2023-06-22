@@ -2,8 +2,8 @@ import { useContext, useState } from 'react';
 
 import ProfileData from './components/ProfileData';
 import ProfileForm from './components/ProfileForm';
+import AuthContext from '@/auth/AuthContext';
 import './Profile.css';
-import AuthContext from '../../auth/AuthContext';
 
 export default function Profile() {
   const { user } = useContext(AuthContext);

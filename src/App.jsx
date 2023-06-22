@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { AuthProvider } from './auth/AuthContext';
+import { AuthProvider } from '@/auth/AuthContext';
 
-import { Header } from './components/Header';
+import { Header } from '@/components/Header';
 
-import Home from './pages/Home';
-import Signup from './pages/Signup';
-import SignupSucess from './pages/Signup/SignupSuccess';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
+import Home from '@/pages/Home';
+import Signup from '@/pages/Signup';
+import SignupSucess from '@/pages/Signup/SignupSuccess';
+import Login from '@/pages/Login';
+import Profile from '@/pages/Profile';
+import NotFound from '@/pages/NotFound';
 
 export default function App() {
   return (

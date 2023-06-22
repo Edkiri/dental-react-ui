@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import useInputValue from '../../hooks/useInputValue';
-import AuthContext from '../../auth/AuthContext';
-import userApi from '../../api/index';
-import DForm from '../../components/DForm/DForm';
-import DInput from '../../components/DInput/Dinput';
+import useInputValue from '@/hooks/useInputValue';
+import AuthContext from '@/auth/AuthContext';
+import userApi from '@/api/index';
+import DForm from '@/components/DForm/DForm';
+import DInput from '@/components/DInput/Dinput';
 
 export default function Login() {
   const emailInput = useInputValue('');

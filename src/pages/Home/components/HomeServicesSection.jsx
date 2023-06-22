@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getAll } from '../../../api/service-api';
+import { getAll } from '@/api/service-api';
 
 export default function HomeServiceSection() {
   const [services, setServices] = useState([]);

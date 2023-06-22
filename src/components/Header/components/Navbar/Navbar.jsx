@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
 
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 import './Navbar.css';
 
 export function Navbar() {

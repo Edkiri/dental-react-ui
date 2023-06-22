@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 
-import AuthContext from '../../../auth/AuthContext';
-import useInputValue from '../../../hooks/useInputValue';
-import userApi from '../../../api';
-import DForm from '../../../components/DForm/DForm';
-import DInput from '../../../components/DInput/Dinput';
+import AuthContext from '@/auth/AuthContext';
+import useInputValue from '@/hooks/useInputValue';
+import userApi from '@/api';
+import DForm from '@/components/DForm/DForm';
+import DInput from '@/components/DInput/Dinput';
 
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);

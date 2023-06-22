@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import useInputValue from '../../hooks/useInputValue';
-import userApi from '../../api/index';
+import useInputValue from '@/hooks/useInputValue';
+import userApi from '@/api/index';
 
-import DForm from '../../components/DForm/DForm';
-import DInput from '../../components/DInput/Dinput';
+import DForm from '@/components/DForm/DForm';
+import DInput from '@/components/DInput/Dinput';
 
 export default function Signup() {
   const emailInput = useInputValue('');
