@@ -1,15 +1,17 @@
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import useInputValue from '@/hooks/useInputValue';
-import AuthContext from '@/auth/AuthContext';
-import userApi from '@/api/index';
+import useInputForm from '@/hooks/useInputForm';
+import validators from '@/utils/validators';
+import DFormInput from '@/components/DFormInput/DFormInput';
 import DForm from '@/components/DForm/DForm';
-import DInput from '@/components/DInput/Dinput';
+import AuthContext from '@/auth/AuthContext';
+import userApi from '@/api';
+import './Login.css';
 
 export default function Login() {
-  const emailInput = useInputValue('');
-  const passwordInput = useInputValue('');
+  const email = useInputForm('', validators.email);
+  const password = useInputForm('', validators.password);
 
   const { login } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -19,13 +21,13 @@ export default function Login() {
 
   const handleSubmit = async () => {
     setError(false);
-    const { value: email } = emailInput;
-    const { value: password } = passwordInput;
-    if (!email || !password) return;
-
     setLoading(true);
+
     try {
-      const user = await userApi.login({ email, password });
+      const user = await userApi.login({
+        email: email.value,
+        password: password.value,
+      });
       login(user);
       navigate('/');
     } catch (err) {
@@ -35,26 +37,21 @@ export default function Login() {
   };
 
   return (
-    <main>
+    <main className="login-container">
       <DForm
-        btnLabel={'Iniciar sesión'}
+        btnLabel="Inicio de sesión"
+        title="Iniciar"
+        error={error}
         loading={loading}
         onSubmit={handleSubmit}
       >
-        <DInput
-          id="email"
-          name="email"
-          label="Dirección de correo"
-          {...emailInput}
-        />
-        <DInput
+        <DFormInput id="email" label="Dirección de correo" {...email} />
+        <DFormInput
           id="password"
-          name="password"
-          label="Contraseña"
           type="password"
-          {...passwordInput}
+          label="Contraseña"
+          {...password}
         />
-        {error}
         <p>
           ¿Aún no tienes una cuenta?{' '}
           <Link className="link" to="/signup">

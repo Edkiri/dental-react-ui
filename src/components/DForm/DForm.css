@@ -1,16 +1,22 @@
 .d-form {
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   border: 1px solid black;
   border-radius: 8px;
-  margin-top: 1rem;
 } 
+.d-form h2 {
+  padding: 1rem;
+  font-size: 1.8rem;
+}
+.d-form .d-form-error {
+  color: var(--error-color);
+}
 .d-form .d-filled-button {
   margin-top: 0.8em;
   font-size: 1.4rem;

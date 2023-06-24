@@ -1,7 +1,14 @@
 import DFilledButton from '../DFilledButton';
 import './DForm.css';
 
-export default function DForm({ children, btnLabel, onSubmit, loading }) {
+export default function DForm({
+  children,
+  btnLabel,
+  title,
+  onSubmit,
+  loading,
+  error,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit();
@@ -9,8 +16,10 @@ export default function DForm({ children, btnLabel, onSubmit, loading }) {
 
   return (
     <form className="d-form" onSubmit={handleSubmit}>
+      <h2>{title}</h2>
       {children}
-      <DFilledButton label={btnLabel} type={'submit'} disabled={loading} />
+      <DFilledButton label={btnLabel} type="submit" disabled={loading} />
+      {error && <span className='d-form-error'>{error}</span>}
     </form>
   );
 }

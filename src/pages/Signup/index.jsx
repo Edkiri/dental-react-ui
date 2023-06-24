@@ -1,33 +1,35 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import useInputValue from '@/hooks/useInputValue';
-import userApi from '@/api/index';
+import userApi from '@/api';
 
 import DForm from '@/components/DForm/DForm';
-import DInput from '@/components/DInput/Dinput';
+import useInputForm from '@/hooks/useInputForm';
+import DFormInput from '@/components/DFormInput/DForminput';
+import validators from '@/utils/validators';
 import SignupSucess from './SignupSuccess';
+
+import './Signup.css';
 
 export default function Signup() {
   const [accountCreated, setAcountCreated] = useState(false);
-  const emailInput = useInputValue('');
-  const passwordInput = useInputValue('');
-  const rePasswordInput = useInputValue('');
-
-  const navidate = useNavigate();
+  const email = useInputForm('', validators.email);
+  const password = useInputForm('', validators.password);
+  const confirmPassword = useInputForm('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    const { value: email } = emailInput;
-    const { value: password } = passwordInput;
-    if (!email || !password) return;
-    setError(false);
+    setError('');
+    if (password.value !== confirmPassword.value) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
 
     try {
       setLoading(true);
-      await userApi.signup({ email, password });
+      await userApi.signup({ email: email.value, password: password.value });
       setAcountCreated(true);
     } catch (err) {
       setLoading(false);
@@ -37,31 +39,26 @@ export default function Signup() {
 
   if (accountCreated) return <SignupSucess />;
   return (
-    <main>
+    <main className="signup-container">
       <DForm
-        btnLabel={'Crear una cuenta'}
-        onSubmit={handleSubmit}
+        btnLabel="Crear cuenta"
+        title="Registro"
+        error={error}
         loading={loading}
+        onSubmit={handleSubmit}
       >
-        <DInput
-          id="name"
-          name="email"
-          label="Dirección de correo"
-          {...emailInput}
-        />
-        <DInput
+        <DFormInput id="email" label="Dirección de correo" {...email} />
+        <DFormInput
           id="password"
-          name="password"
+          type="password"
           label="Contraseña"
-          type="password"
-          {...passwordInput}
+          {...password}
         />
-        <DInput
-          id="rePassword"
-          name="rePassword"
-          label="Reingresa la contraseña"
+        <DFormInput
+          id="confirmPassword"
           type="password"
-          {...rePasswordInput}
+          label="Reingresa la contraseña"
+          {...confirmPassword}
         />
         <p>
           ¿Ya tienes una cuenta?{' '}
@@ -69,7 +66,6 @@ export default function Signup() {
             Inicia sesión
           </Link>
         </p>
-        {error}
       </DForm>
     </main>
   );

@@ -1,0 +1,29 @@
+.d-form-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+} 
+.d-form-label {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1.1rem;
+}
+.d-form-input {
+  outline: none;
+  color: black;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  padding: 0.6rem;
+  width: 100%;
+  font-size: 1.2rem;
+}
+.d-form-input.d-form-input-error {
+  border-color: var(--error-color);
+}
+.d-span-error {
+  display: block;
+  color: var(--error-color);
+}
