@@ -21,6 +21,8 @@ body {
 #root {
   overflow: hidden;
   max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
 }
 p, h1, h2, h3, h4, h5, small, span, label, a {
   color: var(--black-color);

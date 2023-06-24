@@ -6,8 +6,10 @@ import userApi from '@/api/index';
 
 import DForm from '@/components/DForm/DForm';
 import DInput from '@/components/DInput/Dinput';
+import SignupSucess from './SignupSuccess';
 
 export default function Signup() {
+  const [accountCreated, setAcountCreated] = useState(false);
   const emailInput = useInputValue('');
   const passwordInput = useInputValue('');
   const rePasswordInput = useInputValue('');
@@ -26,13 +28,14 @@ export default function Signup() {
     try {
       setLoading(true);
       await userApi.signup({ email, password });
-      navidate('/account-created');
+      setAcountCreated(true);
     } catch (err) {
       setLoading(false);
       setError(err.response.data.message);
     }
   };
 
+  if (accountCreated) return <SignupSucess />;
   return (
     <main>
       <DForm
