@@ -10,21 +10,13 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
-  z-index: 2;
 }
 .menu-ham-button > svg {
   width: 20px;
   height: 20px;
 }
 .close-menu-button {
-  position: absolute;
-  top: 9px;
-  left: 20px;
-  font-size: 25px;
-  padding: 1rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+  display: none;
 }
 @media (max-width: 768px) {
   .menu-ham-button {
@@ -39,15 +31,36 @@
     padding-top: 5rem;
     top: 0;
     bottom: 0;
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-dark-color);
     position: absolute;
     transition: transform 0.3s ease-in-out;
+    gap: 1.2rem;
+  }
+  .menu-list li a {
+    color: white;
+    font-size: 1.4rem;
   }
   .menu-list.open {
     transform: translateX(0%);
   }
   .menu-list.closed {
     transform: translateX(100%);
+  }
+  .menu-list.open .close-menu-button {
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    top: 9px;
+    right: 20px;
+    font-size: 25px;
+    padding: 1rem;
+    color: white;
+    border: none;
+    background-color: transparent;
+  }
+}
+@media (max-width: 500px) {
+  .menu-list {
+    width: 100%;
   }
 }

@@ -3,32 +3,28 @@ import { useContext, useState } from 'react';
 import AuthContext from '@/auth/AuthContext';
 import useInputForm from '@/hooks/useInputForm';
 import userApi from '@/api';
-import { DForm } from '@/components/core';
+import { DForm, DFormInput } from '@/components/core';
+import validators from '@/utils/validators';
 
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);
 
-  const firstNameInput = useInputForm(user.profile?.firstName);
-  const lastNameInput = useInputForm(user.profile?.lastName);
-  const phoneNumberInput = useInputForm(user.profile?.phoneNumber);
-  const imgUrlInput = useInputForm(user.profile?.pictureUrl);
+  const firstName = useInputForm(user.profile?.firstName, validators.name);
+  const lastName = useInputForm(user.profile?.lastName, validators.name);
+  const phoneNumber = useInputForm(
+    user.profile?.phoneNumber,
+    validators.spainPhoneNumber,
+  );
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    const { value: firstName } = firstNameInput;
-    const { value: lastName } = lastNameInput;
-    const { value: phoneNumber } = phoneNumberInput;
-    const { value: imgUrl } = imgUrlInput;
-    // TODO: Validate data
-    // TODO: Refactor all this..
     try {
       const profileData = {
-        firstName,
-        lastName,
-        phoneNumber,
-        pictureUrl: imgUrl || '',
+        firstName: firstName.value,
+        lastName: lastName.value,
+        phoneNumber: phoneNumber.value,
       };
       const userUpdated = await userApi.updateProfile(user.token, profileData);
       login(userUpdated);
@@ -41,9 +37,20 @@ export default function ProfileForm({ setIsUpdating }) {
 
   return (
     <DForm
-      btnLabel={'Actualizar perfil'}
+      title="Perfil"
+      btnLabel="Actualizar"
       loading={loading}
       onSubmit={handleSubmit}
-    ></DForm>
+      error={error}
+    >
+      <DFormInput id="firstName" label="Nombre" {...firstName} />
+      <DFormInput id="lastName" label="Apellidos" {...lastName} />
+      <DFormInput
+        id="phoneNumber"
+        label="Teléfono"
+        inputMode="tel"
+        {...phoneNumber}
+      />
+    </DForm>
   );
 }

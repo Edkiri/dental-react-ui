@@ -28,8 +28,9 @@ export default function useInputForm(initialValue, validator) {
   return {
     value,
     error,
+    errorMessage,
     onChange: handleChange,
     onBlur: handleBlur,
-    errorMessage,
+    maxlength: 200
   };
 }

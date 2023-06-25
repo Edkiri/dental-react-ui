@@ -12,7 +12,7 @@ export default function Profile() {
   if (!user.onBoarded) return <ProfileForm setIsUpdating={setIsUpdating} />;
 
   return (
-    <main>
+    <main className='profile-container'>
       {isUpdating ? (
         <ProfileForm setIsUpdating={setIsUpdating} />
       ) : (

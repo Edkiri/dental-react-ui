@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HeaderProfile, Navbar } from './components';
 import './Header.css';
 
-export function Header() {
+export default function Header() {
   return (
     <header>
       <Link to="/">
