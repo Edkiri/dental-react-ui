@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getAll } from '@/api/service-api';
+import { ServiceIcon } from '@/components/ServiceIcon/ServiceIcon';
+import './HomeServiceSection.css';
 
 export default function HomeServiceSection() {
   const [services, setServices] = useState([]);
@@ -13,7 +15,7 @@ export default function HomeServiceSection() {
       setLoading(true);
       try {
         const { data } = await getAll();
-        setServices(data.data.services);
+        setServices(data.data.services.slice(0, 4));
         setLoading(false);
       } catch (err) {
         setError(err.response.data.message);
@@ -30,7 +32,8 @@ export default function HomeServiceSection() {
       {services.length &&
         services.map((service) => (
           <div className="service-card" key={`service-${service._id}`}>
-            <h5>{service.name}</h5>
+            <ServiceIcon serviceName={service.name} />
+            <h3>{service.name}</h3>
             <p>{service.description}</p>
           </div>
         ))}

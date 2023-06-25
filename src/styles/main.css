@@ -16,10 +16,10 @@ body {
   min-height: 100vh;
   background-color: var(--white-color);
   font-family: 'Ubuntu', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 #root {
-  overflow: hidden;
+  overflow-x: hidden;
   max-width: 100vw;
   min-height: 100vh;
   position: relative;

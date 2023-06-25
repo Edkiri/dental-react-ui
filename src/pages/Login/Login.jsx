@@ -38,8 +38,8 @@ export default function Login() {
   return (
     <main className="login-container">
       <DForm
-        btnLabel="Inicio de sesión"
-        title="Iniciar"
+        btnLabel="Iniciar"
+        title="Inicio de sesión"
         error={error}
         loading={loading}
         onSubmit={handleSubmit}
