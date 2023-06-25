@@ -1,18 +1,17 @@
 import { useContext, useState } from 'react';
 
 import AuthContext from '@/auth/AuthContext';
-import useInputValue from '@/hooks/useInputValue';
+import useInputForm from '@/hooks/useInputForm';
 import userApi from '@/api';
-import DForm from '@/components/DForm/DForm';
-import DInput from '@/components/DInput/Dinput';
+import { DForm } from '@/components/core';
 
 export default function ProfileForm({ setIsUpdating }) {
   const { user, login } = useContext(AuthContext);
 
-  const firstNameInput = useInputValue(user.profile?.firstName);
-  const lastNameInput = useInputValue(user.profile?.lastName);
-  const phoneNumberInput = useInputValue(user.profile?.phoneNumber);
-  const imgUrlInput = useInputValue(user.profile?.pictureUrl);
+  const firstNameInput = useInputForm(user.profile?.firstName);
+  const lastNameInput = useInputForm(user.profile?.lastName);
+  const phoneNumberInput = useInputForm(user.profile?.phoneNumber);
+  const imgUrlInput = useInputForm(user.profile?.pictureUrl);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -45,26 +44,6 @@ export default function ProfileForm({ setIsUpdating }) {
       btnLabel={'Actualizar perfil'}
       loading={loading}
       onSubmit={handleSubmit}
-    >
-      <DInput
-        id="firstName"
-        name="firstName"
-        label="Nombre"
-        {...firstNameInput}
-      />
-      <DInput
-        id="lastName"
-        name="lastName"
-        label="Apellidos"
-        {...lastNameInput}
-      />
-      <DInput
-        id="phoneNumber"
-        name="phoneNumber"
-        label="Teléfono"
-        {...phoneNumberInput}
-      />
-      {error}
-    </DForm>
+    ></DForm>
   );
 }

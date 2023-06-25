@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import userApi from '@/api';
-
-import DForm from '@/components/DForm/DForm';
 import useInputForm from '@/hooks/useInputForm';
-import DFormInput from '@/components/DFormInput/DForminput';
+import { DFormInput, DForm } from '@/components/core';
 import validators from '@/utils/validators';
 import SignupSucess from './SignupSuccess';
+import userApi from '@/api';
 
 import './Signup.css';
 

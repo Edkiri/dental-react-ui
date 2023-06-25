@@ -1,4 +1,4 @@
-import DFilledButton from '../DFilledButton';
+import { DFilledButton } from '@/components/core';
 import './DForm.css';
 
 export default function DForm({
@@ -19,7 +19,7 @@ export default function DForm({
       <h2>{title}</h2>
       {children}
       <DFilledButton label={btnLabel} type="submit" disabled={loading} />
-      {error && <span className='d-form-error'>{error}</span>}
+      {error && <span className="d-form-error">{error}</span>}
     </form>
   );
 }
