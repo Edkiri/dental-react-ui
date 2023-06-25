@@ -32,7 +32,7 @@ export default function HomeServiceSection() {
       {services.length &&
         services.map((service) => (
           <div className="service-card" key={`service-${service._id}`}>
-            <ServiceIcon serviceName={service.name} />
+            <ServiceIcon category={service.category} />
             <h3>{service.name}</h3>
             <p>{service.description}</p>
           </div>

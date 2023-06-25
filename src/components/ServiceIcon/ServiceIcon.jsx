@@ -5,18 +5,18 @@ import Surgery from '../../../assets/cirugia-cosmetica.png';
 
 import './ServiceIcon.css';
 
-export function ServiceIcon({ serviceName }) {
+export function ServiceIcon({ category }) {
   let imgUrl;
-  if (serviceName === 'Examen oral y diagnóstico') imgUrl = Dentist;
-  if (serviceName === 'Cuidado dental') imgUrl = ToothCare;
-  if (serviceName === 'Coronas') imgUrl = Implant;
-  if (serviceName === 'Implantes') imgUrl = Surgery;
+  if (category === 'cleaning') imgUrl = Dentist;
+  if (category === 'consultation') imgUrl = ToothCare;
+  if (category === 'aesthetic') imgUrl = Implant;
+  if (category === 'surgery') imgUrl = Surgery;
 
   return (
     <img
       className="service-icon"
       src={imgUrl}
-      alt={`Imagen de ${serviceName}`}
+      alt={`Imagen de ${category}`}
     />
   );
 }
