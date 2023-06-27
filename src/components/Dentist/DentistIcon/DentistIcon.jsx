@@ -1,7 +1,7 @@
 import './DentistIcon.css';
-import HectorImg from '../../../assets/hector.jpeg';
-import MatiImg from '../../../assets/mati.jpeg';
-import DaniImg from '../../../assets/dani.jpeg';
+import HectorImg from '../../../../assets/hector.jpeg';
+import MatiImg from '../../../../assets/mati.jpeg';
+import DaniImg from '../../../../assets/dani.jpeg';
 
 export function DentistIcon({ dentistId }) {
   let imgUrl;

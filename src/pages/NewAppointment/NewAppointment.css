@@ -1,3 +1,12 @@
 .new-appointment-container form > p {
   padding: 0.5rem;
 }
+
+.select-dentists-question {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+.select-dentists-question input {
+  width: 1rem;
+}

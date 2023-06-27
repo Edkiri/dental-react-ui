@@ -12,7 +12,7 @@ const validators = {
     errorMessage: 'Ingresa un número de teléfono válido en España',
   },
   name: {
-    pattern: /^[A-Za-z]+$/,
+    pattern: /^[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]+$/,
     errorMessage: 'Ingresa solo letras en tu nombre',
   },
 };

@@ -1,0 +1,48 @@
+.dentist-list {
+  width: 100%;
+  position: absolute;
+  background-color: lightgray;
+}
+.dentist-selector-component {
+  width: 100%;
+  position: relative;
+}
+.dentist-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  background-color: lightgray;
+  cursor: pointer;
+}
+.dentist-selector img {
+  width: 2rem;
+  border-radius: 50%;
+}
+.dentist-selector .dropdown-icon {
+  font-size: 1.2rem;
+}
+.dentist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dentist-item img {
+  width: 2rem;
+  border-radius: 50%;
+}
+.dentist-selector {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background-color: transparent;
+}
+.dentist-selector:hover {
+  background-color: var(--primary-dark-color);
+}
