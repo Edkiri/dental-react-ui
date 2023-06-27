@@ -5,7 +5,7 @@ import useInputForm from '@/hooks/useInputForm';
 import validators from '@/utils/validators';
 import { DForm, DFormInput } from '@/components/core';
 import AuthContext from '@/auth/AuthContext';
-import userApi from '@/api';
+import { login as apiLogin } from '@/api';
 import './Login.css';
 
 export default function Login() {
@@ -23,7 +23,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const user = await userApi.login({
+      const user = await apiLogin({
         email: email.value,
         password: password.value,
       });

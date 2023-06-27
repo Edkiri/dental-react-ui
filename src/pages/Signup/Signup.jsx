@@ -5,7 +5,7 @@ import useInputForm from '@/hooks/useInputForm';
 import { DFormInput, DForm } from '@/components/core';
 import validators from '@/utils/validators';
 import SignupSucess from './SignupSuccess';
-import userApi from '@/api';
+import { signup } from '@/api';
 
 import './Signup.css';
 
@@ -27,7 +27,7 @@ export default function Signup() {
 
     try {
       setLoading(true);
-      await userApi.signup({ email: email.value, password: password.value });
+      await signup({ email: email.value, password: password.value });
       setAcountCreated(true);
     } catch (err) {
       setLoading(false);

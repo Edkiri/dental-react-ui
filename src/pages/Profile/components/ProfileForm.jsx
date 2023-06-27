@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import AuthContext from '@/auth/AuthContext';
 import useInputForm from '@/hooks/useInputForm';
-import userApi from '@/api';
+import { updateProfile } from '@/api';
 import { DForm, DFormInput } from '@/components/core';
 import validators from '@/utils/validators';
 
@@ -26,7 +26,7 @@ export default function ProfileForm({ setIsUpdating }) {
         lastName: lastName.value,
         phoneNumber: phoneNumber.value,
       };
-      const userUpdated = await userApi.updateProfile(user.token, profileData);
+      const userUpdated = await updateProfile(user.token, profileData);
       login(userUpdated);
       setIsUpdating(false);
     } catch (err) {
