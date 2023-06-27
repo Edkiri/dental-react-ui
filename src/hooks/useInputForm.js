@@ -31,6 +31,6 @@ export default function useInputForm(initialValue, validator) {
     errorMessage,
     onChange: handleChange,
     onBlur: handleBlur,
-    maxlength: 200
+    maxLength: 200,
   };
 }

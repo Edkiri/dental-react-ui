@@ -6,6 +6,7 @@ export default function DFormInput({
   errorMessage,
   ...inputProps
 }) {
+  console.log(inputProps.value)
   return (
     <div className="d-form-input-container">
       <label className="d-form-label" htmlFor={inputProps.id}>
