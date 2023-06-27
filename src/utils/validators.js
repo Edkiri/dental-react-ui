@@ -13,7 +13,11 @@ const validators = {
   },
   name: {
     pattern: /^[a-zA-Z0-9áéíóúÁÉÍÓÚ\s]+$/,
-    errorMessage: 'Ingresa solo letras en tu nombre',
+    errorMessage: 'Ingresa solo letras',
+  },
+  minTextLength: {
+    pattern: /.{11,}/,
+    errorMessage: 'Ingresa un mensaje de más de 10 letras',
   },
 };
 

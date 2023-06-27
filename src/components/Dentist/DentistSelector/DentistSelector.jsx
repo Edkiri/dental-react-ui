@@ -33,7 +33,7 @@ export default function DentistSelector({
               </p>
             </div>
           ) : (
-            <div className="empty-dentist">------------------------</div>
+            <div className="empty-dentist">Selecciona un dentista</div>
           )}
           <FaAngleDown className={`dropdown-icon ${dropDown && 'active'}`} />
         </button>
