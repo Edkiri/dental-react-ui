@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { DForm, DFormInput, DFormTextarea } from '@/components/Core';
 import useInputForm from '@/hooks/useInputForm';
-import { formatDate } from '@/utils/utils';
+import { getTomorrowDate } from '@/utils/utils';
 import { DentistSelector } from '@/components/Dentist';
 import validators from '@/utils/validators';
 import { requestAppointment } from '@/api';
@@ -14,8 +14,8 @@ import './NewAppointment.css';
 export default function NewAppointment() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const currentDate = formatDate(new Date());
-  const date = useInputForm(currentDate);
+  const tomorrow = getTomorrowDate();
+  const date = useInputForm(tomorrow);
 
   const reason = useInputForm('', validators.minTextLength);
 
@@ -97,7 +97,7 @@ export default function NewAppointment() {
           />
         )}
 
-        <DFormInput label="Fecha" type="date" {...date} />
+        <DFormInput label="Fecha" type="date" min={tomorrow} {...date} />
 
         <DFormTextarea label="Cuéntanos qué necesitas" {...reason} />
       </DForm>

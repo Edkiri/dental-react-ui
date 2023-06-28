@@ -1,7 +1,6 @@
 .menu-list {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
   font-size: 1.2rem;
   z-index: 1;
 }
@@ -35,11 +34,26 @@
     background-color: var(--primary-dark-color);
     position: absolute;
     transition: transform 0.3s ease-in-out;
-    gap: 1.2rem;
   }
-  .menu-list li a {
+  .menu-list li {
+    width: 100%;
+    padding: 0rem 3rem;
+  }
+  .menu-list li button {
     color: white;
+    background-color: transparent;
+    border: none;
     font-size: 1.4rem;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.3rem;
+    margin: 0.3rem;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+  .menu-list li button:hover {
+    border-bottom: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
   }
   .menu-list.open {
     transform: translateX(0%);
