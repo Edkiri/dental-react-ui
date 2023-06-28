@@ -1,11 +1,11 @@
-import Dentist from '../../../assets/dentista.png';
-import ToothCare from '../../../assets/cuidado-dental.png';
-import Implant from '../../../assets/implante.png';
-import Surgery from '../../../assets/cirugia-cosmetica.png';
+import Dentist from '../../../../assets/dentista.png';
+import ToothCare from '../../../../assets/cuidado-dental.png';
+import Implant from '../../../../assets/implante.png';
+import Surgery from '../../../../assets/cirugia-cosmetica.png';
 
 import './ServiceIcon.css';
 
-export function ServiceIcon({ category }) {
+export default function ServiceIcon({ category }) {
   let imgUrl;
   if (category === 'cleaning') imgUrl = Dentist;
   if (category === 'consultation') imgUrl = ToothCare;

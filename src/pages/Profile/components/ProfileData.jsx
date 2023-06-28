@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import AuthContext from '@/auth/AuthContext';
+
+import { AuthContext } from '@/contexts';
 
 export default function ProfileData({ setIsUpdating }) {
   const { user } = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from '@/auth/AuthContext';
+import { AuthContext } from '@/contexts';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 export default function HeaderProfileMenu({ hideDropDown }) {

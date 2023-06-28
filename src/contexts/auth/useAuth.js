@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export default function useAuth() {
   const { storedValue: user, setLocalStorage: setUser } =

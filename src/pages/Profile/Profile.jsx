@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import ProfileData from './components/ProfileData';
 import ProfileForm from './components/ProfileForm';
-import AuthContext from '@/auth/AuthContext';
+import { AuthContext } from '@/contexts';
 import './Profile.css';
 
 export default function Profile() {
@@ -12,7 +12,7 @@ export default function Profile() {
   if (!user.onBoarded) return <ProfileForm setIsUpdating={setIsUpdating} />;
 
   return (
-    <main className='profile-container'>
+    <main className="profile-container">
       {isUpdating ? (
         <ProfileForm setIsUpdating={setIsUpdating} />
       ) : (

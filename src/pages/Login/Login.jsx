@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import useInputForm from '@/hooks/useInputForm';
 import validators from '@/utils/validators';
 import { DForm, DFormInput } from '@/components/core';
-import AuthContext from '@/auth/AuthContext';
+import { AuthContext } from '@/contexts';
 import { login as apiLogin } from '@/api';
 import './Login.css';
 

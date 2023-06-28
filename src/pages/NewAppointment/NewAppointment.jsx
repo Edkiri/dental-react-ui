@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/utils';
 import { DentistSelector } from '@/components/Dentist';
 import validators from '@/utils/validators';
 import { requestAppointment } from '@/api';
-import AuthContext from '@/auth/AuthContext';
+import { AuthContext } from '@/contexts';
 import './NewAppointment.css';
 
 export default function NewAppointment() {

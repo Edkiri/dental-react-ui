@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import AuthContext from '@/auth/AuthContext';
+import { AuthContext } from '@/contexts';
 import useInputForm from '@/hooks/useInputForm';
 import { updateProfile } from '@/api';
 import { DForm, DFormInput } from '@/components/core';
