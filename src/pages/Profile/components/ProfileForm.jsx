@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '@/contexts';
 import useInputForm from '@/hooks/useInputForm';
 import { updateProfile } from '@/api';
-import { DForm, DFormInput } from '@/components/core';
+import { DForm, DFormInput } from '@/components/Core';
 import validators from '@/utils/validators';
 
 export default function ProfileForm({ setIsUpdating }) {

@@ -6,6 +6,7 @@ export default function SignupSucess() {
       <h2>Tu cuenta ha sido creada exitosamente!</h2>
       <div>
         <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
       </div>
     </main>
   );

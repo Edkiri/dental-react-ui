@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { DForm, DFormInput, DFormTextarea } from '@/components/core';
+import { DForm, DFormInput, DFormTextarea } from '@/components/Core';
 import useInputForm from '@/hooks/useInputForm';
 import { formatDate } from '@/utils/utils';
 import { DentistSelector } from '@/components/Dentist';

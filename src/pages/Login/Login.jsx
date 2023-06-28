@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import useInputForm from '@/hooks/useInputForm';
 import validators from '@/utils/validators';
-import { DForm, DFormInput } from '@/components/core';
+import { DForm, DFormInput } from '@/components/Core';
 import { AuthContext } from '@/contexts';
 import { login as apiLogin } from '@/api';
 import './Login.css';
@@ -19,9 +19,10 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    if (email.error || email.value.trim() === '') return;
+    if (password.error || password.value.trim() === '') return;
     setError(false);
     setLoading(true);
-
     try {
       const user = await apiLogin({
         email: email.value,

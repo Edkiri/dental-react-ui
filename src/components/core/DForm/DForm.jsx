@@ -1,4 +1,4 @@
-import { DFilledButton } from '@/components/core';
+import { DFilledButton } from '@/components/Core';
 import './DForm.css';
 
 export default function DForm({

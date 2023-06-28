@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useInputForm from '@/hooks/useInputForm';
-import { DFormInput, DForm } from '@/components/core';
+import { DFormInput, DForm } from '@/components/Core';
 import validators from '@/utils/validators';
 import SignupSucess from './SignupSuccess';
 import { signup } from '@/api';
@@ -19,11 +19,13 @@ export default function Signup() {
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    setError('');
+    if (email.error || email.value.trim() === '') return;
+    if (password.error || password.value.trim() === '') return;
     if (password.value !== confirmPassword.value) {
       setError('Las contraseñas no coinciden');
       return;
     }
+    setError('');
 
     try {
       setLoading(true);

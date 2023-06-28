@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import PerfectSmile from '../../../assets/sonrisa-perfecta.jpg';
 import HomeServiceSection from './components/HomeServicesSection';
-import { DFilledButton } from '@/components/core';
+import { DFilledButton } from '@/components/Core';
 import './Home.css';
 
 export default function Home() {
