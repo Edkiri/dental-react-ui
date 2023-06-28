@@ -9,6 +9,7 @@ import validators from '@/utils/validators';
 import { requestAppointment } from '@/api';
 import { AuthContext } from '@/contexts';
 import './NewAppointment.css';
+import { ServiceSelector } from '@/components/Service';
 
 export default function NewAppointment() {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,9 @@ export default function NewAppointment() {
 
   const [selectDentists, setSelectDentist] = useState(false);
   const [selectedDentist, setSelectedDentist] = useState(null);
+
+  const [selectService, setSelectService] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -75,6 +79,22 @@ export default function NewAppointment() {
           <DentistSelector
             setSelectedDentist={setSelectedDentist}
             selectedDentist={selectedDentist}
+          />
+        )}
+
+        <div className="select-services-question">
+          <span>Elegir un servicio?</span>
+          <input
+            type="checkbox"
+            value={selectService}
+            onChange={() => setSelectService(!selectService)}
+          />
+        </div>
+
+        {selectService && (
+          <ServiceSelector
+            selectedService={selectedService}
+            setSelectedService={setSelectedService}
           />
         )}
       </DForm>

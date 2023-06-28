@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 
 import useDentists from '@/hooks/useDentits';
 import { DentistIcon } from '../DentistIcon/DentistIcon';
 import './DentistSelector.css';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 export default function DentistSelector({
   setSelectedDentist,
@@ -11,6 +12,12 @@ export default function DentistSelector({
 }) {
   const [dropDown, setDropDown] = useState(false);
   const { dentists } = useDentists();
+
+  const hideList = () => {
+    setDropDown(false);
+  };
+  const dentistListRef = useRef(null);
+  useOnClickOutside(dentistListRef, hideList);
 
   const selectDentist = (dentist) => {
     setSelectedDentist(dentist);
@@ -38,7 +45,7 @@ export default function DentistSelector({
           <FaAngleDown className={`dropdown-icon ${dropDown && 'active'}`} />
         </button>
         {dropDown && (
-          <ul className="dentist-list">
+          <ul className="dentist-list" ref={dentistListRef}>
             {dentists.length &&
               dentists.map((dentist) => (
                 <li key={dentist._id} className="dentist-item">

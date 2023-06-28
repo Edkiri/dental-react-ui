@@ -6,7 +6,17 @@
   width: 100%;
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
 }
 .select-dentists-question input {
+  width: 1rem;
+}
+.select-services-question {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.select-services-question input {
   width: 1rem;
 }
