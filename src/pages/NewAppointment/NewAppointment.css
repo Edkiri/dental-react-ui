@@ -5,7 +5,7 @@
 .select-dentists-question {
   width: 100%;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   margin-top: 1rem;
 }
 .select-dentists-question input {
@@ -14,7 +14,7 @@
 .select-services-question {
   width: 100%;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   margin-top: 1rem;
 }
 .select-services-question input {

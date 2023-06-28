@@ -8,8 +8,8 @@ import { DentistSelector } from '@/components/Dentist';
 import validators from '@/utils/validators';
 import { requestAppointment } from '@/api';
 import { AuthContext } from '@/contexts';
-import './NewAppointment.css';
 import { ServiceSelector } from '@/components/Service';
+import './NewAppointment.css';
 
 export default function NewAppointment() {
   const { user } = useContext(AuthContext);
@@ -39,6 +39,9 @@ export default function NewAppointment() {
       if (selectDentists && selectedDentist) {
         appointmentData.dentistId = selectedDentist._id;
       }
+      if (selectService && selectedService) {
+        appointmentData.serviceId = selectedService._id;
+      }
       await requestAppointment({
         token: user.token,
         appointmentData,
@@ -61,10 +64,6 @@ export default function NewAppointment() {
         onSubmit={handleSubmit}
       >
         <p>¡Completa el formulario y programa tu cita!</p>
-
-        <DFormInput label="Fecha" type="date" {...date} />
-
-        <DFormTextarea label="Cuéntanos qué necesitas" {...reason} />
 
         <div className="select-dentists-question">
           <span>Elegir un dentista?</span>
@@ -97,6 +96,10 @@ export default function NewAppointment() {
             setSelectedService={setSelectedService}
           />
         )}
+
+        <DFormInput label="Fecha" type="date" {...date} />
+
+        <DFormTextarea label="Cuéntanos qué necesitas" {...reason} />
       </DForm>
     </div>
   );

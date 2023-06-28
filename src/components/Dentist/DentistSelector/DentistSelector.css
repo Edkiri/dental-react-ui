@@ -3,6 +3,9 @@
   position: absolute;
   background-color: lightgray;
   z-index: 2;
+  max-height: 126px;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
 }
 .dentist-selector-component {
   width: 100%;

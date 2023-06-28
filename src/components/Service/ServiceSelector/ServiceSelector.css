@@ -3,6 +3,8 @@
   position: absolute;
   background-color: lightgray;
   z-index: 2;
+  max-height: 126px;
+  overflow-y: scroll;
 }
 .service-selector-component {
   width: 100%;
