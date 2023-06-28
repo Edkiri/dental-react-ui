@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
-import { getAll } from '@/api';
 import { ServiceIcon } from '@/components/Service';
+import { ServiceContext } from '@/contexts';
 import './HomeServiceSection.css';
 
 export default function HomeServiceSection() {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      setError(false);
-      setLoading(true);
-      try {
-        const { data } = await getAll();
-        setServices(data.data.services.slice(0, 4));
-        setLoading(false);
-      } catch (err) {
-        setError(err.response.data.message);
-        setLoading(false);
-      }
-    })();
-  }, []);
+  const { services, loading, error } = useContext(ServiceContext);
 
   return (
     <section className="home-services-section">

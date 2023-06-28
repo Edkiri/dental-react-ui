@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { AuthProvider } from '@/contexts/auth/AuthContext';
-
 import Header from '@/components/Header/Header';
 
 import Home from '@/pages/Home/Home';
@@ -11,10 +9,11 @@ import Profile from '@/pages/Profile/Profile';
 import NewAppointment from '@/pages/NewAppointment/NewAppointment';
 import NotFound from '@/pages/NotFound';
 import { AuthRoute } from './guards';
+import { ServiceProvider, AuthProvider } from './contexts';
 
 export default function App() {
   return (
-    <AuthProvider>
+    <AppWithProviders>
       <Header />
       <main className="main-container">
         <Routes>
@@ -29,6 +28,14 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+    </AppWithProviders>
+  );
+}
+
+function AppWithProviders({ children }) {
+  return (
+    <AuthProvider>
+      <ServiceProvider>{children}</ServiceProvider>
     </AuthProvider>
   );
 }
