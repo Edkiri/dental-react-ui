@@ -1,0 +1,20 @@
+.service-detail-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.service-detail-info > div {
+  gap: 0.3rem;
+  display: flex;
+}
+.service-detail-container img {
+  height: 75px;
+  width: auto;
+}
+@media screen and (max-width: 678px) {
+  .service-detail-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

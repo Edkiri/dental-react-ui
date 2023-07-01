@@ -1,0 +1,19 @@
+.dentist-profile-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.dentist-profile-container img {
+  border-radius: 50%;
+  height: 40px;
+  width: auto;
+}
+.dentist-profile-info {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.dentist-profile-info > div {
+  gap: 0.3rem;
+  display: flex;
+}

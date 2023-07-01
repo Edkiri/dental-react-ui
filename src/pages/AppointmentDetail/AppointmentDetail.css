@@ -1,0 +1,19 @@
+.appointment-detail-container {
+  max-width: 700px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.appointment-detail-container header {
+  width: 100%;
+  gap: 2rem;
+  display: flex;
+}
+.appointment-card-date {
+  display: flex;
+}
+
+@media screen and (max-width: 678px) {
+  .appointment-detail-container header {
+    flex-direction: column;
+  }
+}

@@ -10,7 +10,9 @@ const STATUS_MAP = {
 export default function AppointmentStatus({ status }) {
   return (
     <div className="appointment-status-container">
-      <strong className='status-label'>Estado:</strong>
+      <div className="status-label">
+        <strong className="status-label">Estado:</strong>
+      </div>
       <div
         style={{ backgroundColor: STATUS_MAP[status].color }}
         className="circle"

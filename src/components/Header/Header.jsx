@@ -5,11 +5,11 @@ import './Header.css';
 
 export default function Header() {
   return (
-    <header>
+    <header className='app-header'>
       <Link to="/">
         <h1>Dentisalud</h1>
       </Link>
-      <div className="header-right">
+      <div className="app-header-right">
         <HeaderProfile />
         <Navbar />
       </div>
