@@ -7,6 +7,7 @@ import Signup from '@/pages/Signup/Signup';
 import Login from '@/pages/Login/Login';
 import Profile from '@/pages/Profile/Profile';
 import NewAppointment from '@/pages/NewAppointment/NewAppointment';
+import PatientAppointments from './pages/PatientAppointments/PatientAppointments';
 import NotFound from '@/pages/NotFound';
 import { AuthRoute } from './guards';
 import { ServiceProvider, AuthProvider } from './contexts';
@@ -24,6 +25,10 @@ export default function App() {
           <Route
             path="/create-appointment"
             element={<AuthRoute children={<NewAppointment />} />}
+          />
+          <Route
+            path="/my-appointments"
+            element={<AuthRoute children={<PatientAppointments />} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

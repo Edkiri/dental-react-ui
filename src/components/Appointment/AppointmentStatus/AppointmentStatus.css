@@ -1,0 +1,14 @@
+.appointment-status-container {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+.status-label {
+  margin-right: 0.5rem;
+}
+.appointment-status-container .circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}

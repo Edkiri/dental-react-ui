@@ -8,3 +8,12 @@ export async function requestAppointment({ token, appointmentData }) {
     },
   });
 }
+
+export async function getPatientAppointments({ token }) {
+  const { data: response } = await axios.get(`${API_URL}/appointment/patient`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.appointments;
+}

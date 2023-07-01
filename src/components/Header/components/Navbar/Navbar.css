@@ -2,7 +2,15 @@
   display: flex;
   align-items: center;
   font-size: 1.2rem;
+  gap: 1rem;
   z-index: 1;
+}
+.menu-list li button {
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 .menu-ham-button {
   display: none;
@@ -30,6 +38,7 @@
     width: 75%;
     padding-top: 5rem;
     top: 0;
+    gap: 0;
     bottom: 0;
     background-color: var(--primary-dark-color);
     position: absolute;
@@ -41,9 +50,6 @@
   }
   .menu-list li button {
     color: white;
-    background-color: transparent;
-    border: none;
-    font-size: 1.4rem;
     width: 100%;
     cursor: pointer;
     padding: 0.3rem;

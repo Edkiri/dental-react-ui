@@ -1,0 +1,14 @@
+.my-appointments-container {
+  width: 100%;
+}
+.my-appointments-container h1 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+@media screen and (max-width: 678px) {
+  .my-appointments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
