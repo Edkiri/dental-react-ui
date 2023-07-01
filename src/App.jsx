@@ -7,11 +7,11 @@ import Signup from '@/pages/Signup/Signup';
 import Login from '@/pages/Login/Login';
 import Profile from '@/pages/Profile/Profile';
 import NewAppointment from '@/pages/NewAppointment/NewAppointment';
-import PatientAppointments from './pages/PatientAppointments/PatientAppointments';
 import NotFound from '@/pages/NotFound';
 import { AuthRoute } from './guards';
 import { ServiceProvider, AuthProvider } from './contexts';
-import { PatientAppointmentsProvider } from './pages/PatientAppointments/contexts/PatientAppointmentContext';
+import { PatientAppointmentsProvider } from './pages/PatientAppointmentsList/contexts/PatientAppointmentContext';
+import PatientAppointmentsList from './pages/PatientAppointmentsList/PatientAppointmentsList';
 
 export default function App() {
   return (
@@ -29,8 +29,12 @@ export default function App() {
           />
           <Route
             path="/my-appointments"
-            element={<AuthRoute children={<PatientAppointments />} />}
+            element={<AuthRoute children={<PatientAppointmentsList />} />}
           />
+          {/* <Route
+            path="/appointment/:appointmentId"
+            element={<AuthRoute children={<AppointmentDetail />} />}
+          /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
