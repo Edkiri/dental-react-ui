@@ -28,6 +28,7 @@ export default function ServiceSelector({
     <div className="service-selector-component">
       <button
         className="service-dropdown"
+        type="button"
         onClick={() => setDropDown(!dropDown)}
       >
         {selectedService ? (

@@ -16,6 +16,7 @@ import {
 } from './contexts';
 import PatientAppointmentsList from './pages/PatientAppointmentsList/PatientAppointmentsList';
 import AppointmentDetail from './pages/AppointmentDetail/AppointmentDetail';
+import AppointmentUpdate from './pages/AppointmentUpdate/AppointmentUpdate';
 
 export default function App() {
   return (
@@ -38,6 +39,10 @@ export default function App() {
           <Route
             path="/appointment/:appointmentId"
             element={<AuthRoute children={<AppointmentDetail />} />}
+          />
+          <Route
+            path="/update-appointment/:appointmentId"
+            element={<AuthRoute children={<AppointmentUpdate />} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

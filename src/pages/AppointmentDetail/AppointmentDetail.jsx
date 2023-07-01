@@ -1,12 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { useAppointmentDetail } from '@/contexts/appointments/hooks';
 import { formatDate } from '@/utils/utils';
 import { AppointmentStatus } from '@/components/Appointment';
 import { DentistProfile } from '@/components/Dentist';
 import { ServiceDetail } from '@/components/Service';
-import './AppointmentDetail.css';
 import { DButton } from '@/components/Core';
+import './AppointmentDetail.css';
 
 export default function AppointmentDetail() {
   const { appointmentId } = useParams();
@@ -14,12 +14,13 @@ export default function AppointmentDetail() {
 
   const { appointment } = useAppointmentDetail({ appointmentId });
 
-  const handleUpdate = () => {
-    navigate(`/update-appointment/${appointment.id}`);
+  const handleUpdate = (appointmentId) => {
+    navigate(`/update-appointment/${appointmentId}`);
   };
 
   return (
     <div className="appointment-detail-container">
+      <Link className="navigate-back" to="/my-appointments">{"<<< Mis citas"}</Link>
       {appointment && (
         <>
           <header>
@@ -34,6 +35,10 @@ export default function AppointmentDetail() {
               <DentistProfile dentist={appointment.dentist} />
             )}
           </header>
+          <div className="appointment-detail-reason">
+            <strong>Motivo:</strong>
+            <span>{appointment.reason}</span>
+          </div>
           {appointment.service && (
             <ServiceDetail
               service={appointment.service}
@@ -42,7 +47,10 @@ export default function AppointmentDetail() {
           )}
           <div className="appointment-detail-control">
             {appointment.status === 'requested' && (
-              <DButton label="Actualizar" onClick={handleUpdate} />
+              <DButton
+                label="Actualizar"
+                onClick={() => handleUpdate(appointment._id)}
+              />
             )}
           </div>
         </>

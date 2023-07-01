@@ -17,7 +17,12 @@
   display: flex;
   justify-content: center;
 }
-
+.appointment-detail-reason {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.3rem;
+}
 @media screen and (max-width: 678px) {
   .appointment-detail-container header {
     flex-direction: column;

@@ -29,6 +29,7 @@ export default function DentistSelector({
       <div className="dentist-selector-component">
         <button
           className="dentist-dropdown"
+          type="button"
           onClick={() => setDropDown(!dropDown)}
         >
           {selectedDentist ? (

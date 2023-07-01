@@ -19,10 +19,30 @@ export async function getPatientAppointments({ token }) {
 }
 
 export async function getAppointment({ appointmentId, token }) {
-  const { data: response } = await axios.get(`${API_URL}/appointment/${appointmentId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const { data: response } = await axios.get(
+    `${API_URL}/appointment/${appointmentId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
+  return response.data.appointment;
+}
+
+export async function updateAppointment({
+  appointmentId,
+  token,
+  appointmentData,
+}) {
+  const { data: response } = await axios.put(
+    `${API_URL}/appointment/${appointmentId}`,
+    appointmentData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
   return response.data.appointment;
 }

@@ -52,3 +52,13 @@ main {
 .link {
   color: #0000EE;
 }
+.navigate-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  text-decoration: underline;
+}
+.navigate-back:hover {
+  color: var(--secondary-color);
+}
