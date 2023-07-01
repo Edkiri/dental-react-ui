@@ -2,12 +2,14 @@
   border: 2px solid var(--secondary-color);
   color: var(--secondary-color);
   padding: 0.4rem 1.2rem;
-  border-radius: 1rem;
+  border-radius: 10px;
   background-color: white;
   transition: background-color 0.3s ease;
   transition: color 0.1s ease;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 .d-button:hover {
   color: white;

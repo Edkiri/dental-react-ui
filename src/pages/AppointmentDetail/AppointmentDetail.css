@@ -11,6 +11,12 @@
 .appointment-card-date {
   display: flex;
 }
+.appointment-detail-control {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
 
 @media screen and (max-width: 678px) {
   .appointment-detail-container header {
