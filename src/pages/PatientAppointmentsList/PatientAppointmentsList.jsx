@@ -2,17 +2,16 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AppointmentCard } from './components';
-import PatientAppointmentsContext from './contexts/PatientAppointmentContext';
+import { AppointmentsContext } from '@/contexts';
 import './PatientAppointmentsList.css';
 
 export default function PatientAppointmentsList() {
   const { loading, error, appointments, getAll } = useContext(
-    PatientAppointmentsContext,
+    AppointmentsContext,
   );
   const navigate = useNavigate();
 
   useEffect(() => getAll, []);
-
 
   const handleDetailNav = (appointmentId) => {
     navigate(`/appointment/${appointmentId}`);

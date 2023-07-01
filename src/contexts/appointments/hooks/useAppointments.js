@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { AuthContext } from '@/contexts';
 import { getPatientAppointments } from '@/api';
 
-export default function usePatientAppointment() {
+export default function useAppointments() {
   const [appointments, setAppointments] = useState([]);
   const { user } = useContext(AuthContext);
 
@@ -24,11 +24,5 @@ export default function usePatientAppointment() {
     }
   };
 
-  const getOne = (appointmentId) => {
-    return appointments.find(
-      (appointment) => (appointment._id = appointmentId),
-    );
-  };
-
-  return { loading, error, appointments, getAll, getOne };
+  return { loading, error, appointments, getAll };
 }

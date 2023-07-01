@@ -9,9 +9,13 @@ import Profile from '@/pages/Profile/Profile';
 import NewAppointment from '@/pages/NewAppointment/NewAppointment';
 import NotFound from '@/pages/NotFound';
 import { AuthRoute } from './guards';
-import { ServiceProvider, AuthProvider } from './contexts';
-import { PatientAppointmentsProvider } from './pages/PatientAppointmentsList/contexts/PatientAppointmentContext';
+import {
+  ServiceProvider,
+  AuthProvider,
+  AppointmentsProvider,
+} from './contexts';
 import PatientAppointmentsList from './pages/PatientAppointmentsList/PatientAppointmentsList';
+import AppointmentDetail from './pages/AppointmentDetail/AppointmentDetail';
 
 export default function App() {
   return (
@@ -31,10 +35,10 @@ export default function App() {
             path="/my-appointments"
             element={<AuthRoute children={<PatientAppointmentsList />} />}
           />
-          {/* <Route
+          <Route
             path="/appointment/:appointmentId"
             element={<AuthRoute children={<AppointmentDetail />} />}
-          /> */}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -46,7 +50,7 @@ function AppWithProviders({ children }) {
   return (
     <AuthProvider>
       <ServiceProvider>
-        <PatientAppointmentsProvider>{children}</PatientAppointmentsProvider>
+        <AppointmentsProvider>{children}</AppointmentsProvider>
       </ServiceProvider>
     </AuthProvider>
   );
