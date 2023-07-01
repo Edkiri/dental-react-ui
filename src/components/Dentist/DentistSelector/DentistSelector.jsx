@@ -3,8 +3,8 @@ import { FaAngleDown } from 'react-icons/fa';
 
 import useDentists from '@/hooks/useDentits';
 import { DentistIcon } from '../DentistIcon/DentistIcon';
-import './DentistSelector.css';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
+import './DentistSelector.css';
 
 export default function DentistSelector({
   setSelectedDentist,

@@ -11,6 +11,7 @@ import PatientAppointments from './pages/PatientAppointments/PatientAppointments
 import NotFound from '@/pages/NotFound';
 import { AuthRoute } from './guards';
 import { ServiceProvider, AuthProvider } from './contexts';
+import { PatientAppointmentsProvider } from './pages/PatientAppointments/contexts/PatientAppointmentContext';
 
 export default function App() {
   return (
@@ -40,7 +41,9 @@ export default function App() {
 function AppWithProviders({ children }) {
   return (
     <AuthProvider>
-      <ServiceProvider>{children}</ServiceProvider>
+      <ServiceProvider>
+        <PatientAppointmentsProvider>{children}</PatientAppointmentsProvider>
+      </ServiceProvider>
     </AuthProvider>
   );
 }
