@@ -1,0 +1,17 @@
+.d-cancel-button {
+  border: 2px solid var(--error-color);
+  color: var(--error-color);
+  padding: 0.4rem 1.2rem;
+  border-radius: 10px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  transition: color 0.1s ease;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.d-cancel-button:hover {
+  color: white;
+  background-color: var(--error-color);
+}

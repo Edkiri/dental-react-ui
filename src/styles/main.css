@@ -36,6 +36,8 @@ body {
 }
 p, h1, h2, h3, h4, h5, small, span, label, a {
   color: var(--black-color);
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 a {
   text-decoration: none;

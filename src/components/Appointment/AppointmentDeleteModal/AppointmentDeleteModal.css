@@ -1,0 +1,20 @@
+.delete-modal-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: .4;
+}
+.delete-modal {
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  top: 15%;
+  left: 25%;
+}

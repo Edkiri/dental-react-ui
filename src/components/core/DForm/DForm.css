@@ -12,6 +12,7 @@
 } 
 .d-form h2 {
   font-size: 1.8rem;
+  text-align: center;
 }
 .d-form .d-form-error {
   color: var(--error-color);
