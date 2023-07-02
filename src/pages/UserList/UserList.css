@@ -1,0 +1,12 @@
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.user-card {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+}

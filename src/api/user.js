@@ -38,3 +38,19 @@ export async function getDentits() {
   const { data: response } = await axios.get(`${API_URL}/user/dentists`);
   return response.data.dentists;
 }
+
+export async function getUsers({ token }) {
+  const { data: response } = await axios.get(`${API_URL}/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const { users } = response.data;
+  const usersParsed = users.map((user) => {
+    return {
+      ...user,
+      fullName: `${user.profile.firstName} ${user.profile.lastName}`,
+    };
+  });
+  return usersParsed;
+}

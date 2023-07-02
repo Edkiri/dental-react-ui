@@ -32,6 +32,11 @@ export function Navbar() {
     return navigate('/');
   };
 
+  const goToUserList = () => {
+    hideMenuList();
+    return navigate('/users');
+  };
+
   return (
     <>
       <button onClick={() => setIsOpen(!isOpen)} className="menu-ham-button">
@@ -46,10 +51,17 @@ export function Navbar() {
             Inicio
           </button>
         </li>
-        {user && (
+        {!user?.roles.includes('admin') && (
           <li>
             <button type="button" onClick={handleNavigate}>
               Mis citas
+            </button>
+          </li>
+        )}
+        {user?.roles.includes('admin') && (
+          <li>
+            <button type="button" onClick={goToUserList}>
+              Usuarios
             </button>
           </li>
         )}

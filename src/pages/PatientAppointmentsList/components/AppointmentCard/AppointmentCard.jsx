@@ -1,9 +1,10 @@
+import { useContext } from 'react';
+
 import { formatDate } from '@/utils/utils';
 import { AppointmentStatus } from '@/components/Appointment';
 import { DButton } from '@/components/Core';
-import './AppointmentCard.css';
-import { useContext } from 'react';
 import { AuthContext } from '@/contexts';
+import './AppointmentCard.css';
 
 export default function AppointmentCard({ appointment, handleDetail }) {
   const { user } = useContext(AuthContext);
@@ -22,11 +23,11 @@ export default function AppointmentCard({ appointment, handleDetail }) {
             <span>{patientName}</span>
           </div>
         )}
+        <div className="appointment-card-right">
+          <AppointmentStatus status={appointment.status} />
+        </div>
       </div>
 
-      <div className="appointment-card-right">
-        <AppointmentStatus status={appointment.status} />
-      </div>
       <div className="appointment-card-control">
         <DButton label="Ver" onClick={() => handleDetail(appointment._id)} />
       </div>
