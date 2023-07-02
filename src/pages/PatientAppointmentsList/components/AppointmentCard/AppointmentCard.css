@@ -13,6 +13,9 @@
 .appointment-card-date strong {
   margin-right: 0.5rem;
 }
+.appointment-card-patient strong {
+  margin-right: 0.5rem;
+}
 .appointment-card-right {
   display: flex;
   align-items: center;
@@ -23,6 +26,9 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+  .appointment-card-info {
+    width: 100%;
   }
   .appointment-card-date {
     width: 100%;

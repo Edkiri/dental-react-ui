@@ -8,7 +8,7 @@ import Login from '@/pages/Login/Login';
 import Profile from '@/pages/Profile/Profile';
 import NewAppointment from '@/pages/NewAppointment/NewAppointment';
 import NotFound from '@/pages/NotFound';
-import { AuthRoute } from './guards';
+import { AdminRoute, AuthRoute } from './guards';
 import {
   ServiceProvider,
   AuthProvider,
@@ -17,6 +17,7 @@ import {
 import PatientAppointmentsList from './pages/PatientAppointmentsList/PatientAppointmentsList';
 import AppointmentDetail from './pages/AppointmentDetail/AppointmentDetail';
 import AppointmentUpdate from './pages/AppointmentUpdate/AppointmentUpdate';
+import DentistAppointmentList from './pages/DentistAppointmentList/DentistAppointmentList';
 
 export default function App() {
   return (
@@ -43,6 +44,10 @@ export default function App() {
           <Route
             path="/update-appointment/:appointmentId"
             element={<AuthRoute children={<AppointmentUpdate />} />}
+          />
+          <Route
+            path="/dentist-appointments"
+            element={<AdminRoute children={<DentistAppointmentList />} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

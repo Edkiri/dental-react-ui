@@ -1,3 +1,17 @@
+.profile-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
 .profile-container form {
   margin-top: 3rem;
+}
+.profile-data-container > div {
+  display: flex;
+  width: 100%;
+  gap: 0.3rem;
+}
+.profile-data-container button {
+  margin-top: 1.5rem;
 }

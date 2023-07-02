@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '@/contexts';
-import { getPatientAppointments } from '@/api';
+import { getDentistAppointments, getPatientAppointments } from '@/api';
 
 export default function useAppointments() {
   const [appointments, setAppointments] = useState([]);
@@ -10,12 +10,21 @@ export default function useAppointments() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const getAppointments = () => {
+    if (user.roles.includes('dentist'))
+      return getDentistAppointments({
+        token: user.token,
+      });
+    if (user.roles.includes('user'))
+      return getPatientAppointments({
+        token: user.token,
+      });
+  };
+
   const getAll = async () => {
     try {
       setLoading(true);
-      const appointments = await getPatientAppointments({
-        token: user.token,
-      });
+      const appointments = await getAppointments();
       setLoading(false);
       setAppointments(appointments);
     } catch (err) {

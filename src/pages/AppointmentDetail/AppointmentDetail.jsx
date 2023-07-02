@@ -22,6 +22,8 @@ export default function AppointmentDetail() {
 
   const { appointment } = useAppointmentDetail({ appointmentId });
 
+  const patientName = `${appointment?.patient.profile.firstName} ${appointment?.patient.profile.lastName}`;
+
   const handleUpdate = (appointmentId) => {
     navigate(`/update-appointment/${appointmentId}`);
   };
@@ -74,6 +76,18 @@ export default function AppointmentDetail() {
               price={appointment.price}
             />
           )}
+          {user.roles.includes('dentist') && (
+            <div className="appointment-card-patient-container">
+              <div>
+                <h5>Paciente:</h5>
+                <p>{patientName}</p>
+              </div>
+              <div>
+                <h5>Teléfono:</h5>
+                <p>{appointment?.patient.profile.phoneNumber}</p>
+              </div>
+            </div>
+          )}
           <div className="appointment-detail-reason">
             <strong>Motivo:</strong>
             <span>{appointment.reason}</span>
@@ -92,10 +106,12 @@ export default function AppointmentDetail() {
                   label="Cancelar cita"
                   onClick={openDeleteModal}
                 />
-                <DButton
-                  label="Actualizar"
-                  onClick={() => handleUpdate(appointment._id)}
-                />
+                {user.roles.includes('user') && (
+                  <DButton
+                    label="Actualizar"
+                    onClick={() => handleUpdate(appointment._id)}
+                  />
+                )}
               </>
             )}
           </div>
