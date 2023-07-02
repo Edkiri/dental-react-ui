@@ -25,6 +25,10 @@ export function Navbar() {
       hideMenuList();
       return navigate('/my-appointments');
     }
+    if (user.roles.includes('admin')) {
+      hideMenuList();
+      return navigate('/appointments');
+    }
   };
 
   const handleGoHome = () => {
@@ -59,11 +63,19 @@ export function Navbar() {
           </li>
         )}
         {user?.roles.includes('admin') && (
-          <li>
-            <button type="button" onClick={goToUserList}>
-              Usuarios
-            </button>
-          </li>
+          <>
+            <li>
+              <button type="button" onClick={goToUserList}>
+                Usuarios
+              </button>
+            </li>
+
+            <li>
+              <button type="button" onClick={handleNavigate}>
+                Citas
+              </button>
+            </li>
+          </>
         )}
         <button className="close-menu-button" onClick={hideMenuList}>
           X

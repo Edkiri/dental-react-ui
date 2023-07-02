@@ -19,3 +19,17 @@ export function formatDate(date) {
   );
   return formatedDate;
 }
+
+export function formatTimeString(dateString) {
+  const originalDate = new Date(dateString);
+
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  };
+
+  const formattedDate = originalDate.toLocaleString('en-US', options);
+
+  return formattedDate;
+}

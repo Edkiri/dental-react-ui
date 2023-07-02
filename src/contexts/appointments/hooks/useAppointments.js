@@ -1,7 +1,11 @@
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '@/contexts';
-import { getDentistAppointments, getPatientAppointments } from '@/api';
+import {
+  getAllAppointments,
+  getDentistAppointments,
+  getPatientAppointments,
+} from '@/api';
 
 export default function useAppointments() {
   const [appointments, setAppointments] = useState([]);
@@ -17,6 +21,10 @@ export default function useAppointments() {
       });
     if (user.roles.includes('user'))
       return getPatientAppointments({
+        token: user.token,
+      });
+    if (user.roles.includes('admin'))
+      return getAllAppointments({
         token: user.token,
       });
   };

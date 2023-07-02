@@ -16,6 +16,9 @@
 .appointment-card-patient strong {
   margin-right: 0.5rem;
 }
+.appointment-card-dentist strong {
+  margin-right: 0.5rem;
+}
 .appointment-card-right {
   display: flex;
   align-items: center;

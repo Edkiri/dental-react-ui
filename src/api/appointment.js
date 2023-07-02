@@ -61,10 +61,35 @@ export async function cancelAppointment({
   token,
   appointmentData,
 }) {
-  console.log(appointmentId);
   const { data: response } = await axios.post(
     `${API_URL}/appointment/${appointmentId}/cancel`,
     appointmentData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  return response.data.appointment;
+}
+
+export async function getAllAppointments({ token }) {
+  const { data: response } = await axios.get(`${API_URL}/appointment`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.appointments;
+}
+
+export async function confirmAppointment({
+  token,
+  appointmentId,
+  ...confirmData
+}) {
+  const { data: response } = await axios.post(
+    `${API_URL}/appointment/${appointmentId}/confirm`,
+    confirmData,
     {
       headers: {
         Authorization: `Bearer ${token}`,

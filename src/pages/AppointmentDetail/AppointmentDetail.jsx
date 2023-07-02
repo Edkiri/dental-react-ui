@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { useAppointmentDetail } from '@/contexts/appointments/hooks';
-import { formatDate } from '@/utils/utils';
+import { formatDate, formatTimeString } from '@/utils/utils';
 import {
   AppointmentDeleteModal,
   AppointmentStatus,
@@ -11,14 +11,16 @@ import { DentistProfile } from '@/components/Dentist';
 import { ServiceDetail } from '@/components/Service';
 import { DButton, DCancelButton } from '@/components/Core';
 import { AuthContext } from '@/contexts';
-import { cancelAppointment } from '@/api';
+import { cancelAppointment, confirmAppointment } from '@/api';
 import './AppointmentDetail.css';
+import AppointmentConfirmModal from '@/components/Appointment/AppointmentConfirmModal/AppointmentConfirmModal';
 
 export default function AppointmentDetail() {
   const { appointmentId } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
 
   const { appointment } = useAppointmentDetail({ appointmentId });
 
@@ -31,10 +33,18 @@ export default function AppointmentDetail() {
   const openDeleteModal = () => {
     setIsDeleting(true);
   };
-
+  const openConfirmModal = () => {
+    setIsConfirming(true);
+  };
   const hideDeleteModal = () => {
     setIsDeleting(false);
   };
+  const hideConfirmModal = () => {
+    setIsConfirming(false);
+  };
+
+  const isDentist =
+    user.roles.includes('admin') || user.roles.includes('dentist');
 
   const handleDelete = async (cancelledReason) => {
     try {
@@ -51,10 +61,36 @@ export default function AppointmentDetail() {
     }
   };
 
+  const handleConfirm = async ({ time, serviceId, dentistId }) => {
+    try {
+      const date = new Date(appointment.datetime);
+      const [hoursToAdd, minutesToAdd] = time.split(':');
+      date.setHours(date.getHours() + parseInt(hoursToAdd, 10));
+      date.setMinutes(date.getMinutes() + parseInt(minutesToAdd, 10));
+      console.log(date);
+      await confirmAppointment({
+        token: user.token,
+        appointmentId: appointment._id,
+        datetime: new Date(date).toISOString(),
+        serviceId,
+        dentistId,
+      });
+      navigate('/appointments');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const canUpdate =
+    user.roles.includes('admin') || appointment.patient._id === user._id;
+
   return (
     <div className="appointment-detail-container">
-      <Link className="navigate-back" to="/my-appointments">
-        {'<<< Mis citas'}
+      <Link
+        className="navigate-back"
+        to={user.roles.includes('admin') ? '/appointments' : 'my-appointments'}
+      >
+        {user.roles.includes('admin') ? '<< Citas' : '<< Mis citas'}
       </Link>
       {appointment && (
         <>
@@ -65,6 +101,12 @@ export default function AppointmentDetail() {
                 <strong>Fecha: </strong>
                 {formatDate(appointment.datetime)}
               </p>
+              {appointment.status === 'confirmed' && (
+                <p className="appointment-card-date">
+                  <strong>Hora: </strong>
+                  {formatTimeString(appointment.datetime)}
+                </p>
+              )}
             </div>
             {appointment.dentist && (
               <DentistProfile dentist={appointment.dentist} />
@@ -106,7 +148,10 @@ export default function AppointmentDetail() {
                   label="Cancelar cita"
                   onClick={openDeleteModal}
                 />
-                {user.roles.includes('user') && (
+                {isDentist && (
+                  <DButton label="Confirmar" onClick={openConfirmModal} />
+                )}
+                {canUpdate && (
                   <DButton
                     label="Actualizar"
                     onClick={() => handleUpdate(appointment._id)}
@@ -121,6 +166,13 @@ export default function AppointmentDetail() {
         <AppointmentDeleteModal
           onSubmit={handleDelete}
           hide={hideDeleteModal}
+        />
+      )}
+      {isConfirming && (
+        <AppointmentConfirmModal
+          onSubmit={handleConfirm}
+          hide={hideConfirmModal}
+          appointment={appointment}
         />
       )}
     </div>

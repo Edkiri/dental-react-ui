@@ -19,6 +19,7 @@ import AppointmentDetail from './pages/AppointmentDetail/AppointmentDetail';
 import AppointmentUpdate from './pages/AppointmentUpdate/AppointmentUpdate';
 import DentistAppointmentList from './pages/DentistAppointmentList/DentistAppointmentList';
 import UserList from './pages/UserList/UserList';
+import AdminAppointmentList from './pages/AdminAppointmentList/AdminAppointmentList';
 
 export default function App() {
   return (
@@ -53,6 +54,10 @@ export default function App() {
           <Route
             path="/users"
             element={<AdminRoute children={<UserList />} />}
+          />
+          <Route
+            path="/appointments"
+            element={<AdminRoute children={<AdminAppointmentList />} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

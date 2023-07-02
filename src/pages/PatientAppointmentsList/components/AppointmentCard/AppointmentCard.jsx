@@ -9,6 +9,10 @@ import './AppointmentCard.css';
 export default function AppointmentCard({ appointment, handleDetail }) {
   const { user } = useContext(AuthContext);
   const patientName = `${appointment.patient.profile.firstName} ${appointment.patient.profile.lastName}`;
+  const doctorName = `${appointment.dentist?.profile.firstName} ${appointment.dentist?.profile.lastName}`
+
+  const isAppointmentdetailed =
+    user.roles.includes('dentist') || user.roles.includes('admin');
 
   return (
     <div className="appointment-card" key={`appointment-${appointment._id}`}>
@@ -17,11 +21,19 @@ export default function AppointmentCard({ appointment, handleDetail }) {
           <strong>Fecha: </strong>
           {formatDate(appointment.datetime)}
         </p>
-        {user.roles.includes('dentist') && (
-          <div className="appointment-card-patient">
-            <strong>Paciente:</strong>
-            <span>{patientName}</span>
-          </div>
+        {isAppointmentdetailed && (
+          <>
+            <div className="appointment-card-patient">
+              <strong>Paciente:</strong>
+              <span>{patientName}</span>
+            </div>
+            {appointment.dentist && (
+              <div className="appointment-card-dentist">
+                <strong>Dentista:</strong>
+                <span>{doctorName}</span>
+              </div>
+            )}
+          </>
         )}
         <div className="appointment-card-right">
           <AppointmentStatus status={appointment.status} />

@@ -2,6 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+.user-card > div {
+  display: flex;
+  gap: 0.3rem;
 }
 .user-card {
   padding: 1rem 2rem;
@@ -9,4 +15,7 @@
   flex-direction: column;
   border: 1px solid black;
   border-radius: 10px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 350px;
 }
