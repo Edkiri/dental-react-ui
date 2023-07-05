@@ -73,8 +73,9 @@ export async function cancelAppointment({
   return response.data.appointment;
 }
 
-export async function getAllAppointments({ token }) {
+export async function getAllAppointments({ token, query }) {
   const { data: response } = await axios.get(`${API_URL}/appointment`, {
+    params: query,
     headers: {
       Authorization: `Bearer ${token}`,
     },

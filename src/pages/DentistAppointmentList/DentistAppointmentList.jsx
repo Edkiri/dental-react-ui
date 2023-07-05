@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AppointmentCard } from '../PatientAppointmentsList/components';
 import { AppointmentsContext } from '@/contexts';
 import './DentistAppointmentList.css';
-import { useNavigate } from 'react-router-dom';
 
 export default function DentistAppointmentList() {
   const { loading, error, appointments, getAll } =

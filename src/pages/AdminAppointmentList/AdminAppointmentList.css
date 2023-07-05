@@ -1,0 +1,12 @@
+.filter-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.filter-form-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  align-items: center;
+}

@@ -12,8 +12,8 @@ import { ServiceDetail } from '@/components/Service';
 import { DButton, DCancelButton } from '@/components/Core';
 import { AuthContext } from '@/contexts';
 import { cancelAppointment, confirmAppointment } from '@/api';
-import './AppointmentDetail.css';
 import AppointmentConfirmModal from '@/components/Appointment/AppointmentConfirmModal/AppointmentConfirmModal';
+import './AppointmentDetail.css';
 
 export default function AppointmentDetail() {
   const { appointmentId } = useParams();
@@ -67,7 +67,7 @@ export default function AppointmentDetail() {
       const [hoursToAdd, minutesToAdd] = time.split(':');
       date.setHours(date.getHours() + parseInt(hoursToAdd, 10));
       date.setMinutes(date.getMinutes() + parseInt(minutesToAdd, 10));
-      console.log(date);
+      
       await confirmAppointment({
         token: user.token,
         appointmentId: appointment._id,
@@ -88,7 +88,7 @@ export default function AppointmentDetail() {
     <div className="appointment-detail-container">
       <Link
         className="navigate-back"
-        to={user.roles.includes('admin') ? '/appointments' : 'my-appointments'}
+        to={user.roles.includes('admin') ? '/appointments' : '/my-appointments'}
       >
         {user.roles.includes('admin') ? '<< Citas' : '<< Mis citas'}
       </Link>

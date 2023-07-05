@@ -1,4 +1,3 @@
-import { DentistIcon } from '../DentistIcon/DentistIcon';
 import './DentistProfile.css';
 
 export default function DentistProfile({ dentist }) {
@@ -16,7 +15,6 @@ export default function DentistProfile({ dentist }) {
           <span>{dentist.dentistProfile.specialization}</span>
         </div>
       </div>
-      <DentistIcon dentistId={dentist._id} />
     </div>
   );
 }

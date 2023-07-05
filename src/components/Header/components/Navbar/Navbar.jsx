@@ -55,7 +55,7 @@ export function Navbar() {
             Inicio
           </button>
         </li>
-        {!user?.roles.includes('admin') && (
+        {user && !user.roles.includes('admin') && (
           <li>
             <button type="button" onClick={handleNavigate}>
               Mis citas

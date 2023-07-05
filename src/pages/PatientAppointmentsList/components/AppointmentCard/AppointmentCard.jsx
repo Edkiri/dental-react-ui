@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { formatDate } from '@/utils/utils';
+import { formatDate, formatTimeString } from '@/utils/utils';
 import { AppointmentStatus } from '@/components/Appointment';
 import { DButton } from '@/components/Core';
 import { AuthContext } from '@/contexts';
@@ -20,6 +20,10 @@ export default function AppointmentCard({ appointment, handleDetail }) {
         <p className="appointment-card-date">
           <strong>Fecha: </strong>
           {formatDate(appointment.datetime)}
+        </p>
+        <p className="appointment-card-date">
+          <strong>Hora: </strong>
+          {formatTimeString(appointment.datetime)}
         </p>
         {isAppointmentdetailed && (
           <>

@@ -14,7 +14,7 @@ export default function useAppointments() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const getAppointments = () => {
+  const getAppointments = (query) => {
     if (user.roles.includes('dentist'))
       return getDentistAppointments({
         token: user.token,
@@ -26,13 +26,14 @@ export default function useAppointments() {
     if (user.roles.includes('admin'))
       return getAllAppointments({
         token: user.token,
+        query
       });
   };
 
-  const getAll = async () => {
+  const getAll = async (query) => {
     try {
       setLoading(true);
-      const appointments = await getAppointments();
+      const appointments = await getAppointments(query);
       setLoading(false);
       setAppointments(appointments);
     } catch (err) {
