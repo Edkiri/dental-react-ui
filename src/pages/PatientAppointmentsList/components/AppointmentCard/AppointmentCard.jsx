@@ -9,7 +9,7 @@ import './AppointmentCard.css';
 export default function AppointmentCard({ appointment, handleDetail }) {
   const { user } = useContext(AuthContext);
   const patientName = `${appointment.patient.profile.firstName} ${appointment.patient.profile.lastName}`;
-  const doctorName = `${appointment.dentist?.profile.firstName} ${appointment.dentist?.profile.lastName}`
+  const doctorName = `${appointment.dentist?.profile.firstName} ${appointment.dentist?.profile.lastName}`;
 
   const isAppointmentdetailed =
     user.roles.includes('dentist') || user.roles.includes('admin');
