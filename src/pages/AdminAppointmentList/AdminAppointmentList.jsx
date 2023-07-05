@@ -3,19 +3,20 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppointments } from '@/contexts/appointments/hooks';
 import { AppointmentCard } from '../PatientAppointmentsList/components';
-import { DFilledButton, DFormInput } from '@/components/Core';
+import { DButton, DFilledButton, DFormInput } from '@/components/Core';
 import useInputForm from '@/hooks/useInputForm';
 import './AdminAppointmentList.css';
 import { AppointmentStatusSelector } from '@/components/Appointment';
 
 export default function AdminAppointmentList() {
-  const { appointments, getAll } = useAppointments();
+  const { appointments, getAll, count } = useAppointments();
   const navigate = useNavigate();
   const patientName = useInputForm('');
   const dentistName = useInputForm('');
   const startDate = useInputForm('');
   const endDate = useInputForm('');
   const [selectedStatus, setSelectedStatus] = useState('Todos');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -32,8 +33,24 @@ export default function AdminAppointmentList() {
   };
 
   useEffect(() => {
-    getAppointments();
-  }, []);
+    let query = {
+      patientName: patientName.value.trim(),
+      dentistName: dentistName.value.trim(),
+    };
+    if (startDate.value) {
+      query.startDate = new Date(startDate.value).toISOString();
+    }
+    if (endDate.value) {
+      query.endDate = new Date(endDate.value).toISOString();
+    }
+    if (selectedStatus !== 'Todos') {
+      query.status = selectedStatus;
+    }
+    const skip = (currentPage - 1) * 4;
+    query.skip = skip;
+
+    getAppointments(query);
+  }, [currentPage]);
 
   const searchAppointments = (e) => {
     e.preventDefault();
@@ -47,19 +64,31 @@ export default function AdminAppointmentList() {
     if (endDate.value) {
       query.endDate = new Date(endDate.value).toISOString();
     }
+    if (selectedStatus !== 'Todos') {
+      query.status = selectedStatus;
+    }
+    const skip = (currentPage - 1) * 4;
+    query.skip = skip;
+
     getAppointments(query);
+    setCurrentPage(1);
   };
 
   const handleDetailNav = (appointmentId) => {
     navigate(`/appointment/${appointmentId}`);
   };
 
-  const appointmentsToPrint = appointments.filter((appointment) => {
-    if (selectedStatus !== 'Todos') {
-      return appointment.status === selectedStatus;
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-    return appointment;
-  });
+  };
+
+  const pagesCount = Math.ceil(count / 4) || 1;
 
   return (
     <>
@@ -91,30 +120,45 @@ export default function AdminAppointmentList() {
             </div>
           </div>
         </div>
+        <AppointmentStatusSelector
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
+        />
         <DFilledButton
           label="Filtrar"
           onClick={searchAppointments}
           type="submit"
         />
-        <AppointmentStatusSelector
-          selectedStatus={selectedStatus}
-          setSelectedStatus={setSelectedStatus}
-        />
       </form>
-
+      <div className="filter-control">
+        <div className="control-buttons">
+          <DButton
+            label="Regresar"
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          />
+          <span>
+            Página {currentPage} de {pagesCount}
+          </span>
+          <DButton
+            label="Siguiente"
+            disabled={currentPage === pagesCount}
+            onClick={handleNextPage}
+          />
+        </div>
+      </div>
       {loading && <span>Loading...</span>}
       {error && <span>{error}</span>}
-
       <div className="appointment-list">
-        {appointmentsToPrint.length ? (
-          appointmentsToPrint.map((appointment) => (
+        {appointments.length ? (
+          appointments.map((appointment) => (
             <AppointmentCard
               key={appointment._id}
               appointment={appointment}
               handleDetail={handleDetailNav}
             />
           ))
-        ): (
+        ) : (
           <p>No se han encontrado citas</p>
         )}
       </div>

@@ -10,6 +10,7 @@ import {
 export default function useAppointments() {
   const [appointments, setAppointments] = useState([]);
   const { user } = useContext(AuthContext);
+  const [count, setCount] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -26,21 +27,22 @@ export default function useAppointments() {
     if (user.roles.includes('admin'))
       return getAllAppointments({
         token: user.token,
-        query
+        query,
       });
   };
 
   const getAll = async (query) => {
     try {
       setLoading(true);
-      const appointments = await getAppointments(query);
+      const response = await getAppointments(query);
       setLoading(false);
-      setAppointments(appointments);
+      setAppointments(response.data.appointments);
+      setCount(response.count);
     } catch (err) {
       setLoading(false);
       setError(err.response.data.message);
     }
   };
 
-  return { loading, error, appointments, getAll };
+  return { loading, error, appointments, getAll, count };
 }

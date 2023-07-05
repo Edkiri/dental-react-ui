@@ -80,7 +80,7 @@ export async function getAllAppointments({ token, query }) {
       Authorization: `Bearer ${token}`,
     },
   });
-  return response.data.appointments;
+  return response;
 }
 
 export async function confirmAppointment({

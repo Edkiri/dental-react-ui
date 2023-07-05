@@ -32,6 +32,19 @@
   color: grey;
   font-size: 1.1rem;
 }
+.filter-control {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 2rem;
+}
+.control-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
 @media screen and (max-width: 678px) {
   .filter-form-header {
     flex-direction: column;
