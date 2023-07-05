@@ -19,10 +19,12 @@ export default function useAppointments() {
     if (user.roles.includes('dentist'))
       return getDentistAppointments({
         token: user.token,
+        query,
       });
     if (user.roles.includes('user'))
       return getPatientAppointments({
         token: user.token,
+        query,
       });
     if (user.roles.includes('admin'))
       return getAllAppointments({
@@ -31,14 +33,17 @@ export default function useAppointments() {
       });
   };
 
-  const getAll = async (query) => {
+  const getAll = async (query = {}) => {
     try {
       setLoading(true);
-      const response = await getAppointments(query);
+      const response = await getAppointments(query || {});
       setLoading(false);
       setAppointments(response.data.appointments);
-      setCount(response.count);
+      if (response.count) {
+        setCount(response.count);
+      }
     } catch (err) {
+      console.log(err)
       setLoading(false);
       setError(err.response.data.message);
     }

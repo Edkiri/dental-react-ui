@@ -15,16 +15,17 @@ export async function getPatientAppointments({ token }) {
       Authorization: `Bearer ${token}`,
     },
   });
-  return response.data.appointments;
+  return response;
 }
 
-export async function getDentistAppointments({ token }) {
+export async function getDentistAppointments({ token, query }) {
   const { data: response } = await axios.get(`${API_URL}/appointment/dentist`, {
+    params: query,
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  return response.data.appointments;
+  return response;
 }
 
 export async function getAppointment({ appointmentId, token }) {
