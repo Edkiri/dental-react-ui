@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAppointmentDetail } from '@/contexts/appointments/hooks';
 import { formatDate, formatTimeString } from '@/utils/utils';
 import {
+  AppointmentConfirmModal,
   AppointmentDeleteModal,
   AppointmentStatus,
 } from '@/components/Appointment';
@@ -12,7 +13,6 @@ import { ServiceDetail } from '@/components/Service';
 import { DButton, DCancelButton } from '@/components/Core';
 import { AuthContext } from '@/contexts';
 import { cancelAppointment, confirmAppointment } from '@/api';
-import AppointmentConfirmModal from '@/components/Appointment/AppointmentConfirmModal/AppointmentConfirmModal';
 import './AppointmentDetail.css';
 
 export default function AppointmentDetail() {
@@ -63,14 +63,14 @@ export default function AppointmentDetail() {
 
   const handleConfirm = async ({ time, serviceId, dentistId }) => {
     try {
-      const date = new Date(appointment.datetime);
+      const date = new Date(appointment?.datetime);
       const [hoursToAdd, minutesToAdd] = time.split(':');
       date.setHours(date.getHours() + parseInt(hoursToAdd, 10));
       date.setMinutes(date.getMinutes() + parseInt(minutesToAdd, 10));
-      
+
       await confirmAppointment({
         token: user.token,
-        appointmentId: appointment._id,
+        appointmentId: appointment?._id,
         datetime: new Date(date).toISOString(),
         serviceId,
         dentistId,
@@ -82,7 +82,7 @@ export default function AppointmentDetail() {
   };
 
   const canUpdate =
-    user.roles.includes('admin') || appointment.patient._id === user._id;
+    user.roles.includes('admin') || appointment?.patient._id === user._id;
 
   return (
     <div className="appointment-detail-container">
@@ -118,18 +118,19 @@ export default function AppointmentDetail() {
               price={appointment.price}
             />
           )}
-          {user.roles.includes('dentist') && (
-            <div className="appointment-card-patient-container">
-              <div>
-                <h5>Paciente:</h5>
-                <p>{patientName}</p>
+          {user.roles.includes('dentist') ||
+            (user.roles.includes('admin') && (
+              <div className="appointment-card-patient-container">
+                <div>
+                  <h5>Paciente:</h5>
+                  <p>{patientName}</p>
+                </div>
+                <div>
+                  <h5>Teléfono:</h5>
+                  <p>{appointment?.patient.profile.phoneNumber}</p>
+                </div>
               </div>
-              <div>
-                <h5>Teléfono:</h5>
-                <p>{appointment?.patient.profile.phoneNumber}</p>
-              </div>
-            </div>
-          )}
+            ))}
           <div className="appointment-detail-reason">
             <strong>Motivo:</strong>
             <span>{appointment.reason}</span>

@@ -1,12 +1,39 @@
+.filter-form-header {
+  display: flex;
+  width: 100%;
+}
 .filter-form {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  width: 100%;
+  justify-content: stretch;
 }
 .filter-form-header {
   display: flex;
-  align-items: center;
+  width: 100%;
+  justify-content: stretch;
   gap: 1rem;
-  align-items: center;
+}
+.filter-form-header > div {
+  width: 100%;
+  display: flex;
+  gap: 0.3rem;
+}
+.filter-form-header > div > div {
+  width: 100%;
+}
+.date-container label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: grey;
+  font-size: 1.1rem;
+}
+@media screen and (max-width: 678px) {
+  .filter-form-header {
+    flex-direction: column;
+  }
 }

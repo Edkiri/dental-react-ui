@@ -1,14 +1,14 @@
 
 .appointment-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   border: 1px solid black;
   padding: 0.5rem 1.5rem;
   gap: 0.8rem;
   border-radius: 10px;
-  margin-bottom: 1rem;
   width: 100%;
+  max-width: 420px;
+  min-width: 380px;
 }
 .appointment-card-date strong {
   margin-right: 0.5rem;
@@ -19,15 +19,15 @@
 .appointment-card-dentist strong {
   margin-right: 0.5rem;
 }
-.appointment-card-right {
+.appointment-card-control {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  height: 100%;
+  align-items: flex-end;
 }
 @media screen and (max-width: 678px) {
   .appointment-card {
     align-items: center;
-    gap: 1rem;
   }
   .appointment-card-info {
     width: 100%;

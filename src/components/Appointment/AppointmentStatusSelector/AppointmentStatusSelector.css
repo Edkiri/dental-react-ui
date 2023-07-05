@@ -1,0 +1,52 @@
+.status-list {
+  width: 100%;
+  position: absolute;
+  background-color: lightgray;
+  z-index: 2;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+}
+.status-selector-component {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+.status-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  background-color: lightgray;
+  cursor: pointer;
+}
+.status-selector img {
+  width: 2rem;
+  border-radius: 50%;
+}
+.status-selector .dropdown-icon {
+  font-size: 1.2rem;
+}
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.status-item img {
+  width: 2rem;
+  border-radius: 50%;
+}
+.status-selector {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background-color: transparent;
+}
+.status-selector:hover {
+  background-color: var(--primary-dark-color);
+}

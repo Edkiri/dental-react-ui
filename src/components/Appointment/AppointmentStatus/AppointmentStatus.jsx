@@ -13,11 +13,17 @@ export default function AppointmentStatus({ status }) {
       <div className="status-label">
         <strong className="status-label">Estado:</strong>
       </div>
-      <div
-        style={{ backgroundColor: STATUS_MAP[status].color }}
-        className="circle"
-      ></div>
-      <span className="status-name">{STATUS_MAP[status].name}</span>
+      {status === 'Todos' ? (
+        <span className="status-name">{status}</span>
+      ) : (
+        <>
+          <div
+            style={{ backgroundColor: STATUS_MAP[status].color }}
+            className="circle"
+          ></div>
+          <span className="status-name">{STATUS_MAP[status].name}</span>
+        </>
+      )}
     </div>
   );
 }

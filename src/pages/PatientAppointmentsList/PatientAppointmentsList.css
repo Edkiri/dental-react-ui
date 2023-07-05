@@ -5,7 +5,16 @@
   margin-bottom: 1rem;
   text-align: center;
 }
-@media screen and (max-width: 678px) {
+.appointment-list { 
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+@media screen and (max-width: 890px) {
+  .appointment-list {
+    justify-content: center;
+  }
   .my-appointments-container {
     display: flex;
     flex-direction: column;

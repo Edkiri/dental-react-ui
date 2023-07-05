@@ -16,7 +16,7 @@ export default function DFormInput({
         type={inputProps.type || 'text'}
         className={`d-form-input ${error && 'd-form-input-error'}`}
       />
-      {error && <span className="d-span-error">{errorMessage}</span>}
+      {error ? (<span className="d-span-error">{errorMessage}</span>) : (<></>)}
     </div>
   );
 }
