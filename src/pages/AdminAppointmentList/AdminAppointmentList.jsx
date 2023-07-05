@@ -84,7 +84,6 @@ export default function AdminAppointmentList() {
   };
 
   const pagesCount = Math.ceil(count / 6) || 1;
-  console.log(count);
 
   return (
     <>

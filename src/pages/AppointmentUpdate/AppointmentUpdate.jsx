@@ -66,7 +66,6 @@ export default function AppointmentUpdate() {
       setLoading(false);
       navigate(`/appointment/${appointmentId}`);
     } catch (err) {
-      console.log(err);
       setLoading(false);
       setError(err.response.data.message);
     }
