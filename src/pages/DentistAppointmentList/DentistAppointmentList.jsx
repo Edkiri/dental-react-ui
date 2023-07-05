@@ -11,66 +11,59 @@ import './DentistAppointmentList.css';
 export default function DentistAppointmentList() {
   const { appointments, getAll, count } = useAppointments();
   const navigate = useNavigate();
+
   const patientName = useInputForm('');
   const dentistName = useInputForm('');
+
   const startDate = useInputForm('');
   const endDate = useInputForm('');
+
   const [selectedStatus, setSelectedStatus] = useState('Todos');
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSearching, setIsSearching] = useState(true);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const getAppointments = async (query) => {
-    try {
-      setLoading(true);
-      await getAll(query);
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
+  const getAppointments = async () => {
+    let query = {
+      patientName: patientName.value.trim(),
+      dentistName: dentistName.value.trim(),
+    };
+    if (startDate.value) {
+      query.startDate = new Date(startDate.value).toISOString();
     }
+    if (endDate.value) {
+      query.endDate = new Date(endDate.value).toISOString();
+    }
+    if (selectedStatus !== 'Todos') {
+      query.status = selectedStatus;
+    }
+    const skip = (currentPage - 1) * 6;
+    query.skip = skip;
+    return getAll(query);
   };
 
   useEffect(() => {
-    let query = {
-      patientName: patientName.value.trim(),
-      dentistName: dentistName.value.trim(),
-    };
-    if (startDate.value) {
-      query.startDate = new Date(startDate.value).toISOString();
-    }
-    if (endDate.value) {
-      query.endDate = new Date(endDate.value).toISOString();
-    }
-    if (selectedStatus !== 'Todos') {
-      query.status = selectedStatus;
-    }
-    const skip = (currentPage - 1) * 4;
-    query.skip = skip;
-
-    getAppointments(query);
-  }, [currentPage]);
+    if (!isSearching) return;
+    (async () => {
+      try {
+        setLoading(true);
+        await getAppointments();
+        setIsSearching(false);
+        setLoading(false);
+      } catch (err) {
+        setIsSearching(false);
+        setError(err);
+        setLoading(false);
+      }
+    })();
+  }, [isSearching]);
 
   const searchAppointments = (e) => {
     e.preventDefault();
-    let query = {
-      patientName: patientName.value.trim(),
-      dentistName: dentistName.value.trim(),
-    };
-    if (startDate.value) {
-      query.startDate = new Date(startDate.value).toISOString();
-    }
-    if (endDate.value) {
-      query.endDate = new Date(endDate.value).toISOString();
-    }
-    if (selectedStatus !== 'Todos') {
-      query.status = selectedStatus;
-    }
-    const skip = (currentPage - 1) * 4;
-    query.skip = skip;
-
-    getAppointments(query);
+    setIsSearching(true);
     setCurrentPage(1);
   };
 
@@ -80,15 +73,18 @@ export default function DentistAppointmentList() {
 
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
+    setIsSearching(true);
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      setIsSearching(true);
     }
   };
 
-  const pagesCount = Math.ceil(count / 4) || 1;
+  const pagesCount = Math.ceil(count / 6) || 1;
+  console.log(count);
 
   return (
     <>
@@ -147,8 +143,10 @@ export default function DentistAppointmentList() {
           />
         </div>
       </div>
+
       {loading && <span>Loading...</span>}
       {error && <span>{error}</span>}
+
       <div className="appointment-list">
         {appointments.length ? (
           appointments.map((appointment) => (

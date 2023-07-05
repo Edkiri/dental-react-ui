@@ -25,6 +25,7 @@ export async function getDentistAppointments({ token, query }) {
       Authorization: `Bearer ${token}`,
     },
   });
+  console.log("RESPONSE", response)
   return response;
 }
 
@@ -81,6 +82,7 @@ export async function getAllAppointments({ token, query }) {
       Authorization: `Bearer ${token}`,
     },
   });
+  console.log("RESPONSE", response)
   return response;
 }
 

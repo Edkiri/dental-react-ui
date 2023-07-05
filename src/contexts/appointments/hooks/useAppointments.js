@@ -39,11 +39,9 @@ export default function useAppointments() {
       const response = await getAppointments(query || {});
       setLoading(false);
       setAppointments(response.data.appointments);
-      if (response.count) {
-        setCount(response.count);
-      }
+      setCount(response.count);
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setLoading(false);
       setError(err.response.data.message);
     }
