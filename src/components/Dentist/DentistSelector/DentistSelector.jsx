@@ -34,7 +34,7 @@ export default function DentistSelector({
         >
           {selectedDentist ? (
             <div className="dentist-item">
-              <DentistIcon dentistId={selectedDentist._id} />
+              <DentistIcon dentistFirstName={selectedDentist.profile.firstName} />
               <p>
                 {selectedDentist.profile.firstName}{' '}
                 {selectedDentist.profile.lastName}
@@ -54,7 +54,7 @@ export default function DentistSelector({
                     className="dentist-selector"
                     onClick={() => selectDentist(dentist)}
                   >
-                    <DentistIcon dentistId={dentist._id} />
+                    <DentistIcon dentistFirstName={dentist.profile.firstName} />
                     <p>
                       {dentist.profile.firstName} {dentist.profile.lastName}
                     </p>

@@ -4,11 +4,11 @@ import MatiImg from '../../../../assets/mati.jpeg';
 import DaniImg from '../../../../assets/dani.jpeg';
 import DefaultImg from '../../../../assets/default-profile-pic.webp';
 
-export function DentistIcon({ dentistId }) {
+export function DentistIcon({ dentistFirstName }) {
   let imgUrl = DefaultImg;
-  if (dentistId === '649abe9787fdb58569abee1e') imgUrl = HectorImg;
-  if (dentistId === '649abe9787fdb58569abee24') imgUrl = MatiImg;
-  if (dentistId === '649abe9787fdb58569abee21') imgUrl = DaniImg;
+  if (dentistFirstName === 'Héctor') imgUrl = HectorImg;
+  if (dentistFirstName === 'Matilde') imgUrl = MatiImg;
+  if (dentistFirstName === 'Daniel') imgUrl = DaniImg;
 
   return (
     <img
