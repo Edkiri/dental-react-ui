@@ -5,11 +5,11 @@ import { useAppointmentDetail } from '@/contexts/appointments/hooks';
 import useInputForm from '@/hooks/useInputForm';
 import { getTomorrowDate } from '@/utils/utils';
 import validators from '@/utils/validators';
-import { DForm, DFormInput, DFormTextarea } from '@/components/Core';
 import { DentistSelector } from '@/components/Dentist';
 import { ServiceSelector } from '@/components/Service';
 import { AppointmentsContext, AuthContext } from '@/contexts';
 import { updateAppointment } from '@/api';
+import { DForm, DFormInput, DFormTextarea } from '@/components/Core';
 import './AppointmentUpdate.css';
 
 export default function AppointmentUpdate() {
