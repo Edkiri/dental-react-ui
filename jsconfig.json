@@ -4,5 +4,9 @@
     "paths": {
       "@*": ["src*"]
     }
-  }
+  },
+  "include": [
+    "vite.config.js",
+    "src",
+  ]
 }
