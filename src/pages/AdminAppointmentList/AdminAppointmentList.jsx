@@ -146,19 +146,21 @@ export default function AdminAppointmentList() {
       {loading && <span>Loading...</span>}
       {error && <span>{error}</span>}
 
-      <div className="appointment-list">
-        {appointments.length ? (
-          appointments.map((appointment) => (
-            <AppointmentCard
-              key={appointment._id}
-              appointment={appointment}
-              handleDetail={handleDetailNav}
-            />
-          ))
-        ) : (
-          <p>No se han encontrado citas</p>
-        )}
-      </div>
+      {!loading && !error && (
+        <div className="appointment-list">
+          {appointments.length ? (
+            appointments.map((appointment) => (
+              <AppointmentCard
+                key={appointment._id}
+                appointment={appointment}
+                handleDetail={handleDetailNav}
+              />
+            ))
+          ) : (
+            <p>No se han encontrado citas</p>
+          )}
+        </div>
+      )}
     </>
   );
 }
